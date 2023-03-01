@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jonssonyan.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="可在线下载百度网盘文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐两款下载器IDM和Aria2">
+<meta property="og:url" content="https://jonssonyan.com/2021/08/14/%E6%8E%A8%E8%8D%90%E4%B8%A4%E6%AC%BE%E4%B8%8B%E8%BD%BD%E5%99%A8IDM%E5%92%8CAria2/index.html">
+<meta property="og:site_name" content="jonssonyan&#39; Website">
+<meta property="og:description" content="可在线下载百度网盘文件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/b2be3e32-9efc-4e7a-96e5-331439f9c123.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/80ed2a65-cb7e-4e2d-bd79-3762bd18d70e.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/85561770-1e2f-4c4f-8693-3b3fa0fe7f54.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/cf856177-59bb-4854-85b8-4166e5ea6077.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/e10d26c0-dc98-440e-9e90-2885513f180c.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/cae7b567-8fe1-4b3b-a865-1849ec91e404.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/49978fd8-6f7c-49fd-960e-093617119652.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/2c7052d7-8186-49cb-90d9-eadac74441fe.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/50344585-ea07-4f93-a78f-a43ed235443a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/9d26ea3bd10a1978cd87b1a2e31ac393.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/7029e0f13d22fdb2a5e9562ec05cf386.png">
+<meta property="article:published_time" content="2021-08-13T16:08:45.000Z">
+<meta property="article:modified_time" content="2023-02-26T15:15:16.148Z">
+<meta property="article:author" content="jonssonyan">
+<meta property="article:tag" content="tool">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://files.mdnice.com/user/10819/b2be3e32-9efc-4e7a-96e5-331439f9c123.png">
+
+<link rel="canonical" href="https://jonssonyan.com/2021/08/14/%E6%8E%A8%E8%8D%90%E4%B8%A4%E6%AC%BE%E4%B8%8B%E8%BD%BD%E5%99%A8IDM%E5%92%8CAria2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>推荐两款下载器IDM和Aria2 | jonssonyan' Website</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aeaf183aa269516a8c023250aaf192a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="jonssonyan' Website" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">jonssonyan' Website</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">怕什么真理无穷，进一步有进一步的欢喜。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jonssonyan.com/2021/08/14/%E6%8E%A8%E8%8D%90%E4%B8%A4%E6%AC%BE%E4%B8%8B%E8%BD%BD%E5%99%A8IDM%E5%92%8CAria2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="jonssonyan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jonssonyan' Website">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          推荐两款下载器IDM和Aria2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-14 00:08:45" itemprop="dateCreated datePublished" datetime="2021-08-14T00:08:45+08:00">2021-08-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-26 23:15:16" itemprop="dateModified" datetime="2023-02-26T23:15:16+08:00">2023-02-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">实用工具</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/08/14/%E6%8E%A8%E8%8D%90%E4%B8%A4%E6%AC%BE%E4%B8%8B%E8%BD%BD%E5%99%A8IDM%E5%92%8CAria2/" class="post-meta-item leancloud_visitors" data-flag-title="推荐两款下载器IDM和Aria2" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/14/%E6%8E%A8%E8%8D%90%E4%B8%A4%E6%AC%BE%E4%B8%8B%E8%BD%BD%E5%99%A8IDM%E5%92%8CAria2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/14/%E6%8E%A8%E8%8D%90%E4%B8%A4%E6%AC%BE%E4%B8%8B%E8%BD%BD%E5%99%A8IDM%E5%92%8CAria2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">可在线下载百度网盘文件</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer"/>
+
+
+<span id="more"></span>
+
+<h1 id="IDM"><a href="#IDM" class="headerlink" title="IDM"></a>IDM</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>官方网站: <a target="_blank" rel="noopener" href="https://www.internetdownloadmanager.com/">https://www.internetdownloadmanager.com</a></p>
+<p>蓝奏云下载地址: <a target="_blank" rel="noopener" href="https://wwa.lanzoui.com/iMsK7w4jtpe">https://wwa.lanzoui.com/iMsK7w4jtpe</a> 密码:hdxa</p>
+<p>注意：官网正版是收费的，蓝奏云的链接是和谐版</p>
+<h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h2><h3 id="设置UA表示"><a href="#设置UA表示" class="headerlink" title="设置UA表示"></a>设置UA表示</h3><p>将 选项-&gt;下载-&gt;UA 设置为： softxm;netdisk</p>
+<h3 id="设置简体中文"><a href="#设置简体中文" class="headerlink" title="设置简体中文"></a>设置简体中文</h3><p><img src="https://files.mdnice.com/user/10819/b2be3e32-9efc-4e7a-96e5-331439f9c123.png" alt="设置IDM简体中文"></p>
+<h3 id="设置-IDM-肤色"><a href="#设置-IDM-肤色" class="headerlink" title="设置 IDM 肤色"></a>设置 IDM 肤色</h3><p><img src="https://files.mdnice.com/user/10819/80ed2a65-cb7e-4e2d-bd79-3762bd18d70e.png" alt="设置IDM肤色"></p>
+<h1 id="IDM下载B站-YouTube高清视频"><a href="#IDM下载B站-YouTube高清视频" class="headerlink" title="IDM下载B站/YouTube高清视频"></a>IDM下载B站/YouTube高清视频</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>利用 IDM 强大的嗅探功能，我们可以下载一切网页中的视频文件。</p>
+<h2 id="安装-IDM"><a href="#安装-IDM" class="headerlink" title="安装 IDM"></a>安装 IDM</h2><p>安装好之后，如果你使用的是谷歌浏览器，它会提示为 Chrome 添加了一个插件。如果没有提示，请自己手动添加 Chrome 插件，这个插件用于嗅探，所以必须装。</p>
+<p><img src="https://files.mdnice.com/user/10819/85561770-1e2f-4c4f-8693-3b3fa0fe7f54.png" alt="文件目录"></p>
+<p><img src="https://files.mdnice.com/user/10819/cf856177-59bb-4854-85b8-4166e5ea6077.png" alt="Chrome插件"></p>
+<p><img src="https://files.mdnice.com/user/10819/e10d26c0-dc98-440e-9e90-2885513f180c.png" alt="手动添加Chrome插件"></p>
+<h2 id="下载-YouTube-视频"><a href="#下载-YouTube-视频" class="headerlink" title="下载 YouTube 视频"></a>下载 YouTube 视频</h2><p>首先需要自己有一个代理，不然是使用不了 YouTube 的，更别谈下载 YouTube 高清视频了。</p>
+<ol>
+<li>设置 IDM 代理</li>
+</ol>
+<p>我这里是使用的是 socks 代理。设置方式如下:</p>
+<p><img src="https://files.mdnice.com/user/10819/cae7b567-8fe1-4b3b-a865-1849ec91e404.png" alt="设置"></p>
+<p><img src="https://files.mdnice.com/user/10819/49978fd8-6f7c-49fd-960e-093617119652.png" alt="设置socks代理"></p>
+<ol start="2">
+<li>下载视频</li>
+</ol>
+<p>大家可以看到视频的右上角有一个按钮，这个就是刚才安装的 Chrome 插件起的作用，而且可以选择视频的清晰度。我们点击自己想要的清晰度就可以唤醒 IDM，最后直接下载就可以了。</p>
+<p><img src="https://files.mdnice.com/user/10819/2c7052d7-8186-49cb-90d9-eadac74441fe.png" alt="下载YouTube高清视频"></p>
+<h2 id="下载-B-站视频"><a href="#下载-B-站视频" class="headerlink" title="下载 B 站视频"></a>下载 B 站视频</h2><p>和下载 YouTube 视频一样，在视频的右上角有一个按钮，选择自己想要下载视频的清晰度即可。一句话总结就是网页中只要能被 IDM 插件嗅探到的视频文件都可以下载。</p>
+<p><img src="https://files.mdnice.com/user/10819/50344585-ea07-4f93-a78f-a43ed235443a.png" alt="下载B站视频"></p>
+<h1 id="Aria2"><a href="#Aria2" class="headerlink" title="Aria2"></a>Aria2</h1><p>开源地址：<a target="_blank" rel="noopener" href="https://github.com/aria2/aria2/releases">https://github.com/aria2/aria2/releases</a></p>
+<p>支 HTTP/HTTPS、FTP、SFTP、BT、磁链（不支持 ED2K）,需要手动配置一些文件</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li>下载好之后解压可以看到以下文件，只有 <code>aria2c.exe</code> 是真正有用的，其他都可以删除。</li>
+</ol>
+<ol start="2">
+<li>新建<code>aria2.conf</code>，文件内容如下</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## &#x27;#&#x27;开头为注释内容, 选项都有相应的注释说明, 根据需要修改 ##</span></span><br><span class="line"><span class="comment">## 被注释的选项填写的是默认值, 建议在需要修改时再取消注释  ##</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 文件保存相关 ##</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件的保存路径(可使用绝对路径或相对路径), 默认: 当前启动位置</span></span><br><span class="line">dir=.\Download</span><br><span class="line"><span class="comment"># 启用磁盘缓存, 0为禁用缓存, 需1.16以上版本, 默认:16M</span></span><br><span class="line">disk-cache=<span class="number">32</span>M</span><br><span class="line"><span class="comment"># 文件预分配方式, 能有效降低磁盘碎片, 默认:prealloc</span></span><br><span class="line"><span class="comment"># 预分配所需时间: none &lt; falloc ? trunc &lt; prealloc</span></span><br><span class="line"><span class="comment"># falloc和trunc则需要文件系统和内核支持</span></span><br><span class="line"><span class="comment"># NTFS建议使用falloc, EXT3/4建议trunc, MAC 下需要注释此项</span></span><br><span class="line">file-allocation=falloc</span><br><span class="line"><span class="comment"># 断点续传</span></span><br><span class="line"><span class="keyword">continue</span>=true</span><br><span class="line"></span><br><span class="line"><span class="comment">## 下载连接相关 ##</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 最大同时下载任务数, 运行时可修改, 默认:5</span></span><br><span class="line">max-concurrent-downloads=<span class="number">5</span></span><br><span class="line"><span class="comment"># 同一服务器连接数, 添加时可指定, 最大:16</span></span><br><span class="line">max-connection-per-server=<span class="number">16</span></span><br><span class="line"><span class="comment"># 最小文件分片大小, 添加时可指定, 取值范围1M -1024M, 默认:20M</span></span><br><span class="line"><span class="comment"># 假定size=10M, 文件为20MiB 则使用两个来源下载; 文件为15MiB 则使用一个来源下载</span></span><br><span class="line"><span class="comment">#min-split-size=10M</span></span><br><span class="line"><span class="comment"># 单个任务最大线程数, 添加时可指定, 默认:5</span></span><br><span class="line">split=<span class="number">32</span></span><br><span class="line"><span class="comment"># 整体下载速度限制, 运行时可修改, 默认:0</span></span><br><span class="line"><span class="comment">#max-overall-download-limit=0</span></span><br><span class="line"><span class="comment"># 单个任务下载速度限制, 默认:0</span></span><br><span class="line"><span class="comment">#max-download-limit=0</span></span><br><span class="line"><span class="comment"># 整体上传速度限制, 运行时可修改, 默认:0</span></span><br><span class="line"><span class="comment">#max-overall-upload-limit=0</span></span><br><span class="line"><span class="comment"># 单个任务上传速度限制, 默认:0</span></span><br><span class="line"><span class="comment">#max-upload-limit=0</span></span><br><span class="line"><span class="comment"># 禁用IPv6, 默认:false</span></span><br><span class="line">disable-ipv6=true</span><br><span class="line"></span><br><span class="line"><span class="comment">## 进度保存相关 ##</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从会话文件中读取下载任务</span></span><br><span class="line">input-file=aria2.session</span><br><span class="line"><span class="comment"># 在Aria2退出时保存`错误/未完成`的下载任务到会话文件</span></span><br><span class="line">save-session=aria2.session</span><br><span class="line"><span class="comment"># 定时保存会话, 0为退出时才保存（此处需要设置，否则失去自动保存）, 需1.16.1以上版本, 默认:0</span></span><br><span class="line">save-session-interval=<span class="number">60</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## RPC相关设置 ##</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用RPC, 默认:false</span></span><br><span class="line">enable-rpc=true</span><br><span class="line"><span class="comment"># 允许所有来源, 默认:false</span></span><br><span class="line">rpc-allow-origin-all=true</span><br><span class="line"><span class="comment"># 允许非外部访问, 默认:false</span></span><br><span class="line">rpc-listen-all=true</span><br><span class="line"><span class="comment"># 事件轮询方式, 取值:[epoll, kqueue, port, poll, select], 不同系统默认值不同</span></span><br><span class="line"><span class="comment">#event-poll=select</span></span><br><span class="line"><span class="comment"># RPC监听端口, 端口被占用时可以修改, 默认:6800</span></span><br><span class="line"><span class="comment">#rpc-listen-port=6800</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## BT/PT下载相关 ##</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当下载的是一个种子(以.torrent结尾)时, 自动开始BT任务, 默认:true</span></span><br><span class="line"><span class="comment">#follow-torrent=true</span></span><br><span class="line"><span class="comment"># BT监听端口, 当端口被屏蔽时使用, 默认:6881-6999</span></span><br><span class="line">listen-port=<span class="number">51413</span></span><br><span class="line"><span class="comment"># 单个种子最大连接数, 默认:55</span></span><br><span class="line"><span class="comment">#bt-max-peers=55</span></span><br><span class="line"><span class="comment"># 打开DHT功能, PT需要禁用, 默认:true</span></span><br><span class="line"><span class="comment">#enable-dht=false</span></span><br><span class="line"><span class="comment"># 打开IPv6 DHT功能, PT需要禁用</span></span><br><span class="line"><span class="comment">#enable-dht6=false</span></span><br><span class="line"><span class="comment"># DHT网络监听端口, 默认:6881-6999</span></span><br><span class="line"><span class="comment">#dht-listen-port=6881-6999</span></span><br><span class="line"><span class="comment"># 本地节点查找, PT需要禁用, 默认:false</span></span><br><span class="line"><span class="comment">#bt-enable-lpd=false</span></span><br><span class="line"><span class="comment"># 种子交换, PT需要禁用, 默认:true</span></span><br><span class="line"><span class="comment">#enable-peer-exchange=false</span></span><br><span class="line"><span class="comment"># 每个种子限速, 对少种的PT很有用, 默认:50K</span></span><br><span class="line"><span class="comment">#bt-request-peer-speed-limit=50K</span></span><br><span class="line"><span class="comment"># 客户端伪装, PT需要</span></span><br><span class="line">peer-id-prefix=-TR2770-</span><br><span class="line">user-agent=Transmission/<span class="number">2.77</span></span><br><span class="line"><span class="comment"># 当种子的分享率达到这个数时, 自动停止做种, 0为一直做种, 默认:1.0</span></span><br><span class="line"><span class="comment">#seed-ratio=0</span></span><br><span class="line"><span class="comment"># 强制保存会话, 即使任务已经完成, 默认:false</span></span><br><span class="line"><span class="comment"># 较新的版本开启后会在任务完成后依然保留.aria2文件</span></span><br><span class="line"><span class="comment">#force-save=true</span></span><br><span class="line"><span class="comment"># BT校验相关, 默认:true</span></span><br><span class="line"><span class="comment">#bt-hash-check-seed=true</span></span><br><span class="line"><span class="comment"># 继续之前的BT任务时, 无需再次校验, 默认:false</span></span><br><span class="line">bt-seed-unverified=true</span><br><span class="line"><span class="comment"># 保存磁力链接元数据为种子文件(.torrent文件), 默认:false</span></span><br><span class="line">bt-save-metadata=true</span><br><span class="line"></span><br><span class="line"><span class="comment"># bt-tracker 更新，解决Aria2 BT下载速度慢没速度的问题</span></span><br><span class="line"><span class="comment"># https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt</span></span><br><span class="line">bt-tracker=http:<span class="regexp">//</span>p4p.arenabg.com:<span class="number">1337</span><span class="regexp">/announce,udp:/</span><span class="regexp">/tracker.opentrackr.org:1337/</span>announce,udp:<span class="regexp">//</span><span class="number">9</span>.rarbg.com:<span class="number">2810</span><span class="regexp">/announce,udp:/</span><span class="regexp">/tracker.openbittorrent.com:6969/</span>announce,udp:<span class="regexp">//</span>exodus.desync.com:<span class="number">6969</span><span class="regexp">/announce,http:/</span><span class="regexp">/openbittorrent.com:80/</span>announce,udp:<span class="regexp">//</span>www.torrent.eu.org:<span class="number">451</span><span class="regexp">/announce,udp:/</span><span class="regexp">/tracker.torrent.eu.org:451/</span>announce,udp:<span class="regexp">//</span>retracker.lanta-net.ru:<span class="number">2710</span><span class="regexp">/announce,udp:/</span><span class="regexp">/open.stealth.si:80/</span>announce,udp:<span class="regexp">//</span>wassermann.online:<span class="number">6969</span><span class="regexp">/announce,udp:/</span><span class="regexp">/vibe.sleepyinternetfun.xyz:1738/</span>announce,udp:<span class="regexp">//</span>vibe.community:<span class="number">6969</span><span class="regexp">/announce,udp:/</span><span class="regexp">/udp-tracker.shittyurl.org:6969/</span>announce,udp:<span class="regexp">//u</span>.wwwww.wtf:<span class="number">1</span><span class="regexp">/announce,udp:/</span><span class="regexp">/tracker1.bt.moack.co.kr:80/</span>announce,udp:<span class="regexp">//</span>tracker0.ufibox.com:<span class="number">6969</span><span class="regexp">/announce,udp:/</span><span class="regexp">/tracker.zerobytes.xyz:1337/</span>announce,udp:<span class="regexp">//</span>tracker.uw0.xyz:<span class="number">6969</span><span class="regexp">/announce,udp:/</span><span class="regexp">/tracker.tiny-vps.com:6969/</span>announce</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>新建<code>aria2.session</code>用于存储会话，这个文件内容可以为空</p>
+</li>
+<li><p>在 Aria2 根目录启动 cmd 命令行，输入以下命令启动服务。</p>
+</li>
+</ol>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aria2c <span class="params">--conf-path=</span><span class="string">./aria2.conf</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/img_convert/9d26ea3bd10a1978cd87b1a2e31ac393.png">
+此时就会出现如图所示的情况，将程序窗口放在后台运行即可</p>
+<ol start="5">
+<li>浏览器访问<code>http://aria2c.com</code>会出现一个 UI 界面，点击添加将链接复制进去就可以使用了。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/7029e0f13d22fdb2a5e9562ec05cf386.png"></p>
+<h2 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h2><p>修改<code>aria2.conf</code></p>
+<ol>
+<li>下载文件的保存路径</li>
+</ol>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">dir</span><span class="operator">=</span>.\Download</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>配置 Tracker 服务器，解决 BT 下载速度慢的问题</li>
+</ol>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">bt-tracker</span><span class="operator">=</span></span><br></pre></td></tr></table></figure>
+
+<p>默认即可，不行在使用下面两个地址</p>
+<ul>
+<li>地址 1：<a target="_blank" rel="noopener" href="https://trackerslist.com/#/zh">https://trackerslist.com/#/zh</a></li>
+<li>地址 2：<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt">https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt</a></li>
+</ul>
+<h2 id="打包好的文件"><a href="#打包好的文件" class="headerlink" title="打包好的文件"></a>打包好的文件</h2><p>将Aria2和AriaNg使用Electron打包成Windows下可执行的程序。</p>
+<blockquote>
+<p>GitHub: <a target="_blank" rel="noopener" href="https://github.com/jonssonyan/aria2-x">https://github.com/jonssonyan/aria2-x</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>jonssonyan
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://jonssonyan.com/2021/08/14/%E6%8E%A8%E8%8D%90%E4%B8%A4%E6%AC%BE%E4%B8%8B%E8%BD%BD%E5%99%A8IDM%E5%92%8CAria2/" title="推荐两款下载器IDM和Aria2">https://jonssonyan.com/2021/08/14/推荐两款下载器IDM和Aria2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tool/" rel="tag"># tool</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/17/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E7%9A%84%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/" rel="prev" title="前后端分离的权限管理系统设计和实现">
+      <i class="fa fa-chevron-left"></i> 前后端分离的权限管理系统设计和实现
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/28/Web%E5%BA%94%E7%94%A8%E5%AF%B9%E6%8E%A5%E6%94%AF%E4%BB%98%E5%AE%9D%E5%BD%93%E9%9D%A2%E4%BB%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="next" title="Web应用对接支付宝当面付解决方案">
+      Web应用对接支付宝当面付解决方案 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IDM"><span class="nav-number">1.</span> <span class="nav-text">IDM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEUA%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.1.</span> <span class="nav-text">设置UA表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87"><span class="nav-number">1.2.2.</span> <span class="nav-text">设置简体中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE-IDM-%E8%82%A4%E8%89%B2"><span class="nav-number">1.2.3.</span> <span class="nav-text">设置 IDM 肤色</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IDM%E4%B8%8B%E8%BD%BDB%E7%AB%99-YouTube%E9%AB%98%E6%B8%85%E8%A7%86%E9%A2%91"><span class="nav-number">2.</span> <span class="nav-text">IDM下载B站&#x2F;YouTube高清视频</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-IDM"><span class="nav-number">2.2.</span> <span class="nav-text">安装 IDM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-YouTube-%E8%A7%86%E9%A2%91"><span class="nav-number">2.3.</span> <span class="nav-text">下载 YouTube 视频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-B-%E7%AB%99%E8%A7%86%E9%A2%91"><span class="nav-number">2.4.</span> <span class="nav-text">下载 B 站视频</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Aria2"><span class="nav-number">3.</span> <span class="nav-text">Aria2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE"><span class="nav-number">3.2.</span> <span class="nav-text">自定义配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E5%A5%BD%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">3.3.</span> <span class="nav-text">打包好的文件</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="jonssonyan"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">jonssonyan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jonssonyan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jonssonyan" rel="noopener" target="_blank"><i class="fa-brands fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/jonssonyan_news" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;jonssonyan_news" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Feed → &#x2F;atom.xml"><i class="fa-solid fa-rss fa-fw"></i>Feed</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jonssonyan</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      requiredFields: ['nick','mail'],
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'MLb8dLzGdyUG0QLBIGhrkklS-MdYXbMMI',
+      appKey     : 'r80fWmRBErFKOepUW55Lq7pt',
+      placeholder: "支持 Markdown 语法",
+      avatar     : 'monsterid',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'https://mlb8dlzg.api.lncldglobal.com'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>

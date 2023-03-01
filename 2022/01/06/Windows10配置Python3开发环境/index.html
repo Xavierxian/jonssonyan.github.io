@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jonssonyan.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Windows10配置Python3开发环境">
+<meta property="og:url" content="https://jonssonyan.com/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPython3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/index.html">
+<meta property="og:site_name" content="jonssonyan&#39; Website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/7b25f00c-3f11-4ba3-afea-3fd9410fa4aa.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/4d59f43f-712f-4575-85b1-574778034f09.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/c57196ee-bbcd-455e-81eb-fc5fa6c6cca0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4304a0afc3f84ffba6d49a756bbf484c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0e8ae49d617140c7aed27b00ca5f664c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6e69a900ff4f4ee6a4246315e4513757.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e1c89da35a6d4b3c9c7b9e9ee444b2f7.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b680e9543d0a40c9ae4054642724046e.png">
+<meta property="article:published_time" content="2022-01-06T13:58:23.000Z">
+<meta property="article:modified_time" content="2023-02-26T15:15:16.146Z">
+<meta property="article:author" content="jonssonyan">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pip">
+<meta property="article:tag" content="conda">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://files.mdnice.com/user/10819/7b25f00c-3f11-4ba3-afea-3fd9410fa4aa.png">
+
+<link rel="canonical" href="https://jonssonyan.com/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPython3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Windows10配置Python3开发环境 | jonssonyan' Website</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aeaf183aa269516a8c023250aaf192a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="jonssonyan' Website" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">jonssonyan' Website</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">怕什么真理无穷，进一步有进一步的欢喜。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jonssonyan.com/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPython3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="jonssonyan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jonssonyan' Website">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows10配置Python3开发环境
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-06 21:58:23" itemprop="dateCreated datePublished" datetime="2022-01-06T21:58:23+08:00">2022-01-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-26 23:15:16" itemprop="dateModified" datetime="2023-02-26T23:15:16+08:00">2023-02-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">开发环境</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPython3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="post-meta-item leancloud_visitors" data-flag-title="Windows10配置Python3开发环境" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPython3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPython3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer"/>
+
+
+<span id="more"></span>
+
+<h1 id="下载Python3-7-9"><a href="#下载Python3-7-9" class="headerlink" title="下载Python3.7.9"></a>下载Python3.7.9</h1><p>常用的Python发行版有两个，一个是官网的Python（CPython），一个是Conda</p>
+<ol>
+<li>官网下载Python</li>
+</ol>
+<p>Python官网: <a target="_blank" rel="noopener" href="https://www.python.org/ftp/python/">https://www.python.org/ftp/python/</a></p>
+<ol start="2">
+<li>下载Miniconda</li>
+</ol>
+<ul>
+<li>Conda官网：<a target="_blank" rel="noopener" href="https://repo.anaconda.com/miniconda/">https://repo.anaconda.com/miniconda/</a></li>
+<li>国内镜像：<a target="_blank" rel="noopener" href="https://repo.anaconda.com/miniconda/">https://repo.anaconda.com/miniconda/</a></li>
+<li>清华镜像：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/">https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/</a></li>
+</ul>
+<h1 id="配置conda"><a href="#配置conda" class="headerlink" title="配置conda"></a>配置conda</h1><h2 id="conda与anaconda、miniconda的区别"><a href="#conda与anaconda、miniconda的区别" class="headerlink" title="conda与anaconda、miniconda的区别"></a>conda与anaconda、miniconda的区别</h2><ul>
+<li>Conda：一个包管理器。Anaconda是一个发行包，conda可以理解为一个工具，也是一个可执行命令，其核心功能是包管理与环境管理。包管理与pip的使用类似，环境管理则允许用户方便地安装不同版本的python并可以快速切换。</li>
+<li>Anaconda：一个打包的集合器皿。里面预装好了conda、某个版本的python、众多packages、科学计算工具等等，所以也称为Python的一种发行版。</li>
+<li>Miniconda：顾名思义，它只包含最基本的内容——python与conda，以及相关的必须依赖项，对于空间要求严格的用户，Miniconda是一种选择。</li>
+</ul>
+<h2 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h2><p>本文Miniconda安装位置为<code>D:\Applications\Miniconda3</code></p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">D:</span>\Applications\Miniconda3</span><br><span class="line"><span class="symbol">D:</span>\Applications\Miniconda3\Scripts</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置国内镜像"><a href="#设置国内镜像" class="headerlink" title="设置国内镜像"></a>设置国内镜像</h2><blockquote>
+<p>清华镜像：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/</a></p>
+</blockquote>
+<p>通过以下命令在用户目录下创建<code>.condarc</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --<span class="built_in">set</span> show_channel_urls <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+
+<p>编辑<code>.condarc</code>，文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: <span class="literal">true</span></span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch-lts: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改默认包安装位置"><a href="#修改默认包安装位置" class="headerlink" title="修改默认包安装位置"></a>修改默认包安装位置</h2><p>编辑<code>.condarc</code>，追加文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">envs_dirs:</span><br><span class="line">  - D:\Applications\Miniconda3\envs</span><br><span class="line">pkgs_dirs:</span><br><span class="line">  - D:\Applications\Miniconda3\pkgs</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置pip-cache目录"><a href="#设置pip-cache目录" class="headerlink" title="设置pip cache目录"></a>设置pip cache目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.cache-dir <span class="string">&quot;D:\Applications\Miniconda3\pip-cache&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><blockquote>
+<p>官方API：<a target="_blank" rel="noopener" href="https://conda.io/projects/conda/en/latest/index.html">https://conda.io/projects/conda/en/latest/index.html</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 激活虚拟环境</span></span><br><span class="line">activate env_name</span><br><span class="line"><span class="comment"># 退出虚拟环境</span></span><br><span class="line">conda deactivate</span><br><span class="line"><span class="comment"># 创建虚拟环境</span></span><br><span class="line">conda create -n python37 python=3.7</span><br><span class="line"><span class="comment"># 列出虚拟环境</span></span><br><span class="line">conda <span class="built_in">env</span> list</span><br><span class="line"><span class="comment"># 卸载虚拟环境</span></span><br><span class="line">conda remove -n python37 --all</span><br><span class="line"><span class="comment"># 安装包</span></span><br><span class="line">conda install requests or pip install requests</span><br><span class="line"><span class="comment"># 卸载包</span></span><br><span class="line">conda remove requests or pip uninstall requests</span><br><span class="line"><span class="comment"># 查看环境包信息</span></span><br><span class="line">conda list</span><br></pre></td></tr></table></figure>
+
+<h1 id="配置pip"><a href="#配置pip" class="headerlink" title="配置pip"></a>配置pip</h1><h2 id="设置国内镜像-1"><a href="#设置国内镜像-1" class="headerlink" title="设置国内镜像"></a>设置国内镜像</h2><ul>
+<li>临时使用</li>
+</ul>
+<p>可以在使用 pip 的时候在后面加上<code>-i</code>参数，指定 pip 源</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install xxx -i http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/pypi/</span>simple/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>永久修改</li>
+</ul>
+<ol>
+<li>Linux</li>
+</ol>
+<p>修改 <code>~/.pip/pip.conf</code> (没有就创建一个)，内容如下:</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">global</span>]</span><br><span class="line"><span class="keyword">index</span>-url = http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line"><span class="keyword">trusted</span>-host = mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Windows</li>
+</ol>
+<p>在 user 目录中创建一个 pip 目录，如：<code>%USERPROFILE%\pip</code>，新建文件 pip.ini，内容如下:</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">global</span>]</span><br><span class="line"><span class="keyword">index</span>-url = http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line"><span class="keyword">trusted</span>-host = mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改默认包安装位置-1"><a href="#修改默认包安装位置-1" class="headerlink" title="修改默认包安装位置"></a>修改默认包安装位置</h2><p>以官网下载Python（CPython）为例，Python安装位置为<code>D:\Applications\Python</code>。</p>
+<ol>
+<li>安装目录解释</li>
+</ol>
+<p><img src="https://files.mdnice.com/user/10819/7b25f00c-3f11-4ba3-afea-3fd9410fa4aa.png"></p>
+<p>Python 目录/文件的具体用途：</p>
+<ul>
+<li><strong>DLLs</strong> Python 自己使用的动态库</li>
+<li><strong>Doc</strong> 自带的 Python 使用说明文档（如果上面安装时不选择，应该会没有，这个没具体试过）</li>
+<li><strong>include</strong> 包含共享目录</li>
+<li><strong>Lib</strong> 库文件，放自定义模块和包</li>
+<li><strong>libs</strong> 编译生成的 Python 自己使用的静态库</li>
+<li><strong>Scripts</strong> 各种包/模块对应的可执行程序。安装时如果选择了 pip。那么 pip 的可执行程序就在此！</li>
+<li><strong>tcl</strong> 桌面编程包</li>
+</ul>
+<p>pip 包默认安装位置是<code>%USERPROFILE%\AppData\Roaming\Python\Python37\Lib\site-packages</code></p>
+<ol start="2">
+<li>修改配置文件</li>
+</ol>
+<p>命令行输入：<code>python -m site -help</code></p>
+<p><img src="https://files.mdnice.com/user/10819/4d59f43f-712f-4575-85b1-574778034f09.png"></p>
+<p>修改配置文件，配置文件位置为：<code>D:\Applications\Python\Python37\Lib\site.py</code></p>
+<p><img src="https://files.mdnice.com/user/10819/c57196ee-bbcd-455e-81eb-fc5fa6c6cca0.png">
+内容如下</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">USER_SITE</span> = <span class="string">&#x27;D:\Applications\Python\Python37\Lib\site-packages&#x27;</span></span><br><span class="line"><span class="attr">USER_BASE</span> = <span class="string">&#x27;D:\Applications\Python\Python37\Scripts&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="设置pip-cache目录-1"><a href="#设置pip-cache目录-1" class="headerlink" title="设置pip cache目录"></a>设置pip cache目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.cache-dir <span class="string">&quot;D:\Applications\Python\Python37\pip-cache&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="升级-pip"><a href="#升级-pip" class="headerlink" title="升级 pip"></a>升级 pip</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+
+<h1 id="配置PyQt5开发环境"><a href="#配置PyQt5开发环境" class="headerlink" title="配置PyQt5开发环境"></a>配置PyQt5开发环境</h1><h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>使用Conda创建一个项目，Python版本为3.7</p>
+<p><img src="https://img-blog.csdnimg.cn/4304a0afc3f84ffba6d49a756bbf484c.png"></p>
+<h2 id="安装pyqt5、pyqt5-tools"><a href="#安装pyqt5、pyqt5-tools" class="headerlink" title="安装pyqt5、pyqt5-tools"></a>安装pyqt5、pyqt5-tools</h2><p>Conda中没有pyqt5相关的包，所以我们使用pip安装pyqt5和pyqt5-tools</p>
+<ol>
+<li>安装pyqt5</li>
+</ol>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://pypi.org/project/PyQt5/">https://pypi.org/project/PyQt5/</a></p>
+</blockquote>
+<p>这是开发PyQt5最主要的包。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install PyQt5</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>pyqt5-tools</li>
+</ol>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://pypi.org/project/pyqt5-tools/">https://pypi.org/project/pyqt5-tools/</a></p>
+</blockquote>
+<p>这个可以帮我我们快速开发，例如可以借助包里面的工具（designer），快速设计界面。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyqt5-tools</span><br></pre></td></tr></table></figure>
+
+<p><strong>如何配置designer？</strong></p>
+<p>如下图所示配置designer.exe文件位置，例如<code>D:\Applications\Miniconda3\envs\pyqt5-demo\Lib\site-packages\qt5_applications\Qt\bin\designer.exe</code></p>
+<p><img src="https://img-blog.csdnimg.cn/0e8ae49d617140c7aed27b00ca5f664c.png"></p>
+<p><strong>如何使用？</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/6e69a900ff4f4ee6a4246315e4513757.png"></p>
+<p>主界面如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/e1c89da35a6d4b3c9c7b9e9ee444b2f7.png"></p>
+<h2 id="第一行代码"><a href="#第一行代码" class="headerlink" title="第一行代码"></a>第一行代码</h2><p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QApplication, QWidget, QLabel</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">window</span>():</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    widget = QWidget()</span><br><span class="line"></span><br><span class="line">    text_label = QLabel(widget)</span><br><span class="line">    text_label.setText(<span class="string">&quot;Hello World!&quot;</span>)</span><br><span class="line">    text_label.move(<span class="number">110</span>, <span class="number">85</span>)</span><br><span class="line"></span><br><span class="line">    widget.setGeometry(<span class="number">50</span>, <span class="number">50</span>, <span class="number">320</span>, <span class="number">200</span>)</span><br><span class="line">    widget.setWindowTitle(<span class="string">&quot;PyQt5 Example&quot;</span>)</span><br><span class="line">    widget.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    window()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行效果如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/b680e9543d0a40c9ae4054642724046e.png"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>jonssonyan
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://jonssonyan.com/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPython3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="Windows10配置Python3开发环境">https://jonssonyan.com/2022/01/06/Windows10配置Python3开发环境/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/pip/" rel="tag"># pip</a>
+              <a href="/tags/conda/" rel="tag"># conda</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/06/%E9%85%8D%E7%BD%AEGit%E7%9A%84%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E4%BB%A3%E7%90%86/" rel="prev" title="配置Git的连接方式和代理">
+      <i class="fa fa-chevron-left"></i> 配置Git的连接方式和代理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPHP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" rel="next" title="Windows10配置PHP开发环境">
+      Windows10配置PHP开发环境 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDPython3-7-9"><span class="nav-number">1.</span> <span class="nav-text">下载Python3.7.9</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEconda"><span class="nav-number">2.</span> <span class="nav-text">配置conda</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#conda%E4%B8%8Eanaconda%E3%80%81miniconda%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.1.</span> <span class="nav-text">conda与anaconda、miniconda的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.2.</span> <span class="nav-text">添加环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F"><span class="nav-number">2.3.</span> <span class="nav-text">设置国内镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%8C%85%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.4.</span> <span class="nav-text">修改默认包安装位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEpip-cache%E7%9B%AE%E5%BD%95"><span class="nav-number">2.5.</span> <span class="nav-text">设置pip cache目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">2.6.</span> <span class="nav-text">常用命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEpip"><span class="nav-number">3.</span> <span class="nav-text">配置pip</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F-1"><span class="nav-number">3.1.</span> <span class="nav-text">设置国内镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%8C%85%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE-1"><span class="nav-number">3.2.</span> <span class="nav-text">修改默认包安装位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEpip-cache%E7%9B%AE%E5%BD%95-1"><span class="nav-number">3.3.</span> <span class="nav-text">设置pip cache目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7-pip"><span class="nav-number">3.4.</span> <span class="nav-text">升级 pip</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEPyQt5%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">4.</span> <span class="nav-text">配置PyQt5开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-number">4.1.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85pyqt5%E3%80%81pyqt5-tools"><span class="nav-number">4.2.</span> <span class="nav-text">安装pyqt5、pyqt5-tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="nav-number">4.3.</span> <span class="nav-text">第一行代码</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="jonssonyan"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">jonssonyan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jonssonyan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jonssonyan" rel="noopener" target="_blank"><i class="fa-brands fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/jonssonyan_news" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;jonssonyan_news" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Feed → &#x2F;atom.xml"><i class="fa-solid fa-rss fa-fw"></i>Feed</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jonssonyan</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      requiredFields: ['nick','mail'],
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'MLb8dLzGdyUG0QLBIGhrkklS-MdYXbMMI',
+      appKey     : 'r80fWmRBErFKOepUW55Lq7pt',
+      placeholder: "支持 Markdown 语法",
+      avatar     : 'monsterid',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'https://mlb8dlzg.api.lncldglobal.com'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>

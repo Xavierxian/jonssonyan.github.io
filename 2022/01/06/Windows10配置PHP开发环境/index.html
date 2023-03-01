@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jonssonyan.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Windows10配置PHP开发环境">
+<meta property="og:url" content="https://jonssonyan.com/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPHP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/index.html">
+<meta property="og:site_name" content="jonssonyan&#39; Website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/ddf44f79-24f9-40d1-9939-83a71dcdfd32.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/2aa1fc17-6536-4aa2-adca-067052ecd934.png">
+<meta property="article:published_time" content="2022-01-06T13:58:23.000Z">
+<meta property="article:modified_time" content="2023-02-26T15:15:16.146Z">
+<meta property="article:author" content="jonssonyan">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://files.mdnice.com/user/10819/ddf44f79-24f9-40d1-9939-83a71dcdfd32.png">
+
+<link rel="canonical" href="https://jonssonyan.com/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPHP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Windows10配置PHP开发环境 | jonssonyan' Website</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aeaf183aa269516a8c023250aaf192a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="jonssonyan' Website" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">jonssonyan' Website</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">怕什么真理无穷，进一步有进一步的欢喜。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jonssonyan.com/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPHP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="jonssonyan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jonssonyan' Website">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows10配置PHP开发环境
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-06 21:58:23" itemprop="dateCreated datePublished" datetime="2022-01-06T21:58:23+08:00">2022-01-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-26 23:15:16" itemprop="dateModified" datetime="2023-02-26T23:15:16+08:00">2023-02-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">开发环境</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPHP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="post-meta-item leancloud_visitors" data-flag-title="Windows10配置PHP开发环境" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPHP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPHP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer"/>
+
+
+<span id="more"></span>
+
+<h1 id="下载-PHP"><a href="#下载-PHP" class="headerlink" title="下载 PHP"></a>下载 PHP</h1><blockquote>
+<p>PHP 官网: <a target="_blank" rel="noopener" href="https://windows.php.net/downloads/releases/archives/">https://windows.php.net/downloads/releases/archives/</a></p>
+</blockquote>
+<p>注意：下载的 PHP VC 版本不能比前面安装的 vc redist 版高。</p>
+<p>进入 PHP 安装目录，复制<code>php.ini-development</code> 改名为 <code>php.ini</code> ，打开<code>php.ini</code>找到 <code>;extension_dir=ext</code>，去掉注释符，将值改为 <code>$&#123;PHP安装路径&#125;\ext</code>，内容如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension_dir = <span class="string">&quot;D:\Applications\php-7.2.34-Win32-VC15-x64\ext&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>php 要使能 MySQL 的话还要在 <code>php.ini</code> 文件中取消如下两行的注释</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">extension=mysqli</span><br><span class="line">date.timezone = Asia/Shanghai</span><br></pre></td></tr></table></figure>
+
+<h1 id="下载-PhpStorm"><a href="#下载-PhpStorm" class="headerlink" title="下载 PhpStorm"></a>下载 PhpStorm</h1><blockquote>
+<p>JetBrains PhpStorm: <a target="_blank" rel="noopener" href="https://www.jetbrains.com/zh-cn/phpstorm/">https://www.jetbrains.com/zh-cn/phpstorm/</a></p>
+</blockquote>
+<h1 id="配置-xdebug"><a href="#配置-xdebug" class="headerlink" title="配置 xdebug"></a>配置 xdebug</h1><blockquote>
+<p>xdebug 官网: <a target="_blank" rel="noopener" href="https://xdebug.org/download/historical">https://xdebug.org/download/historical</a></p>
+</blockquote>
+<blockquote>
+<p>xdebug 官网描述: <a target="_blank" rel="noopener" href="https://xdebug.org/docs/upgrade_guide#changed-xdebug.remote_enable">https://xdebug.org/docs/upgrade_guide#changed-xdebug.remote_enable</a></p>
+</blockquote>
+<p>编辑 <code>php.ini</code> ，在文件后追加以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[Xdebug]</span><br><span class="line">;指定Xdebug扩展文件的绝对路径</span><br><span class="line">zend_extension=<span class="string">&quot;D:\Applications\php-7.2.34-Win32-VC15-x64\ext\php_xdebug-3.0.0-7.2-vc15-x86_64.dll&quot;</span></span><br><span class="line"></span><br><span class="line">xdebug.mode=debug</span><br><span class="line">xdebug.client_host=127.0.0.1</span><br><span class="line">xdebug.client_port=9000</span><br><span class="line">xdebug.output_dir=<span class="string">&quot;D:\Applications\php-7.2.34-Win32-VC15-x64\xdebug&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://files.mdnice.com/user/10819/ddf44f79-24f9-40d1-9939-83a71dcdfd32.png"></p>
+<p>注意：配置的端口（<code>xdebug.client_port</code>）要和 phpstorm 上面设置的端口一致</p>
+<p><img src="https://files.mdnice.com/user/10819/2aa1fc17-6536-4aa2-adca-067052ecd934.png"></p>
+<blockquote>
+<p>xdebug 使用教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Qx411f7pF?p=2">https://www.bilibili.com/video/BV1Qx411f7pF?p=2</a></p>
+</blockquote>
+<h1 id="下载-Nginx"><a href="#下载-Nginx" class="headerlink" title="下载 Nginx"></a>下载 Nginx</h1><blockquote>
+<p>Nginx 官网: <a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a></p>
+</blockquote>
+<h1 id="配置-Composer"><a href="#配置-Composer" class="headerlink" title="配置 Composer"></a>配置 Composer</h1><blockquote>
+<p>Composer 国内官网: <a target="_blank" rel="noopener" href="https://www.phpcomposer.com/">https://www.phpcomposer.com/</a>
+下载<code>composer.phar</code>：<a target="_blank" rel="noopener" href="https://install.phpcomposer.com/composer.phar">https://install.phpcomposer.com/composer.phar</a></p>
+</blockquote>
+<p>这里用的方式是用的<code>composer.phar</code>免安装的配置方式，当然你也可以去官网下载完整安装包，无脑下一步即可。</p>
+<h2 id="Mac-或-Linux-系统"><a href="#Mac-或-Linux-系统" class="headerlink" title="Mac 或 Linux 系统"></a>Mac 或 Linux 系统</h2><p>打开命令行窗口并执行如下命令将前面下载的 <code>composer.phar</code> 文件移动到 <code>/usr/local/bin/</code> 目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mv</span> composer.phar /usr/local/bin/composer</span><br></pre></td></tr></table></figure>
+
+<h2 id="Windows-系统"><a href="#Windows-系统" class="headerlink" title="Windows 系统"></a>Windows 系统</h2><ol>
+<li>找到并进入 PHP 的安装目录（和你在命令行中执行的 <code>php</code> 指令应该是同一套 PHP）。</li>
+<li>将 <code>composer.phar</code> 复制到 PHP 的安装目录下面，也就是和 <code>php.exe</code> 在同一级目录。</li>
+<li>在 PHP 安装目录下新建一个 <code>composer.bat</code> 文件，并将下列代码保存到此文件中。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@php <span class="string">&quot;%~dp0composer.phar&quot;</span> %*</span><br></pre></td></tr></table></figure>
+
+<p>最后重新打开一个命令行窗口试一试执行 <code>composer --version</code> 看看是否正确输出版本号。</p>
+<h2 id="可能出现的报错"><a href="#可能出现的报错" class="headerlink" title="可能出现的报错"></a>可能出现的报错</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[Composer\Exception\NoSslException]</span><br><span class="line">  The openssl extension is required <span class="keyword">for</span> SSL/TLS protection but is not available. If you can not <span class="built_in">enable</span> the openssl ex</span><br><span class="line">  tension, you can <span class="built_in">disable</span> this error, at your own risk, by setting the <span class="string">&#x27;disable-tls&#x27;</span> option to <span class="literal">true</span>.</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong>:</p>
+<ul>
+<li>关闭 Composer 的 TLS 来修复，注意：<strong>它不安全</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer config -g -- disable-tls <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>开启 php.ini 中的 extension（推荐）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=openssl</span><br></pre></td></tr></table></figure>
+
+<p>注意: 如果设置为 true，则将使用 HTTP 尝试所有 HTTPS URL，而不执行网络级加密。这是一个安全风险，不推荐。更好的方法是在 php.ini 中启用 php_openssl 和 openssl 扩展。</p>
+<h2 id="修改-Composer-为国内镜像"><a href="#修改-Composer-为国内镜像" class="headerlink" title="修改 Composer 为国内镜像"></a>修改 Composer 为国内镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局配置</span></span><br><span class="line">composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/</span><br><span class="line"><span class="comment"># 取消配置</span></span><br><span class="line">composer config --<span class="built_in">unset</span> repos.packagist</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改-Composer-缓存路径"><a href="#修改-Composer-缓存路径" class="headerlink" title="修改 Composer 缓存路径"></a>修改 Composer 缓存路径</h2><p><code>[cache-dir]</code>是 Composer 的缓存目录，默认位置是<code>%USERPROFILE%/AppData/Local/Composer</code></p>
+<p><code>[vendor-dir]</code>软件包的默认安装位置，默认位置是<code>%USERPROFILE%/vendor</code></p>
+<p>在<code>php</code>安装目录下新建<code>Composer</code>文件夹，在<code>Composer</code>文件夹内再新建<code>cache-dir</code>，<code>vendor-dir</code>文件夹，输入以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">composer config -g cache-dir D:/Applications/php-7.2.34-Win32-VC15-x64/Composer/cache-dir</span><br><span class="line">composer config -g vendor-dir D:/Applications/php-7.2.34-Win32-VC15-x64/Composer/vendor-dir <span class="comment"># 不建议修改vendor-dir，指定工程中使用composer install也会安装到这个目录，原因未知</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化composer.json文件</span></span><br><span class="line">composer init</span><br><span class="line"><span class="comment"># 列出所有可用的命令</span></span><br><span class="line">composer list</span><br><span class="line"><span class="comment"># 读取composer.json内容，解析依赖关系，安装依赖包到vendor目录下</span></span><br><span class="line">composer install</span><br><span class="line"><span class="comment"># 更新最新的依赖关系到compsoer.lock文件，解析最新的依赖关系并且写入composer.lock文件</span></span><br><span class="line">composer update</span><br><span class="line"><span class="comment"># 搜索包，packagename替换为你想查找的包名称</span></span><br><span class="line">composer search packagename</span><br><span class="line"><span class="comment"># 添加对packagename的依赖，packagename可修改为你想要的包名称</span></span><br><span class="line">composer require packagename</span><br><span class="line">composer show packagename</span><br><span class="line"><span class="comment"># 更新 composer.phar文件自身</span></span><br><span class="line">composer self-update</span><br><span class="line"><span class="comment"># 优化一下自动加载</span></span><br><span class="line">composer dump-autoload --optimize</span><br><span class="line"><span class="comment"># 选项查看帮助信息</span></span><br><span class="line">composer <span class="built_in">command</span> --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="可能出现的报错-1"><a href="#可能出现的报错-1" class="headerlink" title="可能出现的报错"></a>可能出现的报错</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Installing dependencies from lock file (including require-dev)</span><br><span class="line">Verifying lock file contents can be installed on current platform.</span><br><span class="line">Your lock file does not contain a compatible <span class="built_in">set</span> of packages. Please run composer update.</span><br><span class="line"></span><br><span class="line">  Problem 1</span><br><span class="line">    - league/flysystem is locked to version 1.1.9 and an update of this package was not requested.</span><br><span class="line">    - league/flysystem 1.1.9 requires ext-fileinfo * -&gt; it is missing from your system. Install or <span class="built_in">enable</span> PHP<span class="string">&#x27;s fileinfo extension.</span></span><br><span class="line"><span class="string">  Problem 2</span></span><br><span class="line"><span class="string">    - league/mime-type-detection is locked to version 1.11.0 and an update of this package was not requested.</span></span><br><span class="line"><span class="string">    - league/mime-type-detection 1.11.0 requires ext-fileinfo * -&gt; it is missing from your system. Install or enable PHP&#x27;</span>s fileinfo extension.</span><br><span class="line">  Problem 3</span><br><span class="line">    - league/flysystem 1.1.9 requires ext-fileinfo * -&gt; it is missing from your system. Install or <span class="built_in">enable</span> PHP<span class="string">&#x27;s fileinfo extension.</span></span><br><span class="line"><span class="string">    - laravel/framework v5.6.40 requires league/flysystem ^1.0.8 -&gt; satisfiable by league/flysystem[1.1.9].</span></span><br><span class="line"><span class="string">    - laravel/framework is locked to version v5.6.40 and an update of this package was not requested.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">To enable extensions, verify that they are enabled in your .ini files:</span></span><br><span class="line"><span class="string">    - D:\Applications\php-7.2.34-Win32-VC15-x64\php.ini</span></span><br><span class="line"><span class="string">You can also run `php --ini` in a terminal to see which files are used by PHP in CLI mode.</span></span><br><span class="line"><span class="string">Alternatively, you can run Composer with `--ignore-platform-req=ext-fileinfo` to temporarily ignore these required extensions.</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong>:</p>
+<ul>
+<li>开启 php.ini 中的 extension</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=fileinfo</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>jonssonyan
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://jonssonyan.com/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPHP%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="Windows10配置PHP开发环境">https://jonssonyan.com/2022/01/06/Windows10配置PHP开发环境/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/php/" rel="tag"># php</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPython3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" rel="prev" title="Windows10配置Python3开发环境">
+      <i class="fa fa-chevron-left"></i> Windows10配置Python3开发环境
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/06/Windows10%E9%85%8D%E7%BD%AEGo%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" rel="next" title="Windows10配置Go开发环境">
+      Windows10配置Go开发环境 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-PHP"><span class="nav-number">1.</span> <span class="nav-text">下载 PHP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-PhpStorm"><span class="nav-number">2.</span> <span class="nav-text">下载 PhpStorm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-xdebug"><span class="nav-number">3.</span> <span class="nav-text">配置 xdebug</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-Nginx"><span class="nav-number">4.</span> <span class="nav-text">下载 Nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-Composer"><span class="nav-number">5.</span> <span class="nav-text">配置 Composer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac-%E6%88%96-Linux-%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.1.</span> <span class="nav-text">Mac 或 Linux 系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.2.</span> <span class="nav-text">Windows 系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%8A%A5%E9%94%99"><span class="nav-number">5.3.</span> <span class="nav-text">可能出现的报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-Composer-%E4%B8%BA%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F"><span class="nav-number">5.4.</span> <span class="nav-text">修改 Composer 为国内镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-Composer-%E7%BC%93%E5%AD%98%E8%B7%AF%E5%BE%84"><span class="nav-number">5.5.</span> <span class="nav-text">修改 Composer 缓存路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">5.6.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%8A%A5%E9%94%99-1"><span class="nav-number">5.7.</span> <span class="nav-text">可能出现的报错</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="jonssonyan"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">jonssonyan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jonssonyan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jonssonyan" rel="noopener" target="_blank"><i class="fa-brands fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/jonssonyan_news" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;jonssonyan_news" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Feed → &#x2F;atom.xml"><i class="fa-solid fa-rss fa-fw"></i>Feed</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jonssonyan</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      requiredFields: ['nick','mail'],
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'MLb8dLzGdyUG0QLBIGhrkklS-MdYXbMMI',
+      appKey     : 'r80fWmRBErFKOepUW55Lq7pt',
+      placeholder: "支持 Markdown 语法",
+      avatar     : 'monsterid',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'https://mlb8dlzg.api.lncldglobal.com'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>

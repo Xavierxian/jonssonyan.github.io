@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jonssonyan.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Windows10配置Rust开发环境">
+<meta property="og:url" content="https://jonssonyan.com/2022/04/02/Windows10%E9%85%8D%E7%BD%AERust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/index.html">
+<meta property="og:site_name" content="jonssonyan&#39; Website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/f08cc248-8676-49ca-8685-e09aa19713a4.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/3170ea3b-07d8-4757-85eb-65979bbed257.png">
+<meta property="article:published_time" content="2022-04-02T11:49:33.000Z">
+<meta property="article:modified_time" content="2023-02-26T15:15:16.146Z">
+<meta property="article:author" content="jonssonyan">
+<meta property="article:tag" content="rust">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://files.mdnice.com/user/10819/f08cc248-8676-49ca-8685-e09aa19713a4.png">
+
+<link rel="canonical" href="https://jonssonyan.com/2022/04/02/Windows10%E9%85%8D%E7%BD%AERust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Windows10配置Rust开发环境 | jonssonyan' Website</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aeaf183aa269516a8c023250aaf192a0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="jonssonyan' Website" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">jonssonyan' Website</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">怕什么真理无穷，进一步有进一步的欢喜。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jonssonyan.com/2022/04/02/Windows10%E9%85%8D%E7%BD%AERust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="jonssonyan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jonssonyan' Website">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows10配置Rust开发环境
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-02 19:49:33" itemprop="dateCreated datePublished" datetime="2022-04-02T19:49:33+08:00">2022-04-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-26 23:15:16" itemprop="dateModified" datetime="2023-02-26T23:15:16+08:00">2023-02-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">开发环境</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/04/02/Windows10%E9%85%8D%E7%BD%AERust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="post-meta-item leancloud_visitors" data-flag-title="Windows10配置Rust开发环境" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/04/02/Windows10%E9%85%8D%E7%BD%AERust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/04/02/Windows10%E9%85%8D%E7%BD%AERust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer"/>
+
+
+<span id="more"></span>
+
+<h1 id="0x0-相关概念"><a href="#0x0-相关概念" class="headerlink" title="0x0. 相关概念"></a>0x0. 相关概念</h1><h2 id="1-channel"><a href="#1-channel" class="headerlink" title="1). channel"></a>1). channel</h2><p>Rust 发布在三个不同的 channel 上：stable、beta、nightly，简单说就是三种不同的版本。</p>
+<ul>
+<li>stable：Rust 的稳定版本，每 6 周发布一次。</li>
+<li>beta：Rust 的公开测试版本，将是下一个 stable 版本。</li>
+<li>nightly：每天更新，包含以一些实验性的新特性。</li>
+</ul>
+<h2 id="2-toolchain"><a href="#2-toolchain" class="headerlink" title="2). toolchain"></a>2). toolchain</h2><p>一套 Rust 组件，包括编译器及其相关工具，并且包含 channel，版本及支持的平台信息。</p>
+<h2 id="3-target"><a href="#3-target" class="headerlink" title="3). target"></a>3). target</h2><p>指编译的目标平台，即：编译后的程序在哪种操作系统上运行。</p>
+<h2 id="4-component"><a href="#4-component" class="headerlink" title="4). component"></a>4). component</h2><p>toolchain 是由 component 组成的。</p>
+<p>查看所有可用和已经安装的组件命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rustup component list</span><br></pre></td></tr></table></figure>
+
+<p>rustup 默认安装的组件：</p>
+<ul>
+<li>rustc：Rust 编译器。</li>
+<li>rust-std：Rust 标准库。</li>
+<li>cargo：包管理和构建工具。</li>
+<li>rust-docs：Rust 文档。</li>
+<li>rustfmt：用来格式化 Rust 源代码。</li>
+<li>clippy：Rust 的代码检查工具。</li>
+</ul>
+<h2 id="5-profile"><a href="#5-profile" class="headerlink" title="5). profile"></a>5). profile</h2><p>为了方便对 component 进行管理，使用 profile 定义一组 component。</p>
+<p>不同的 profile 包含不同的组件，安装 rustup 时有三种 profile 可选：</p>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>components</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>minimal</td>
+<td>rustc, rust-std, cargo</td>
+</tr>
+<tr>
+<td>default</td>
+<td>rustc, rust-std, cargo, rust-docs, rustfmt, clippy</td>
+</tr>
+<tr>
+<td>complete</td>
+<td>all</td>
+</tr>
+</tbody></table>
+<p>修改 profile 命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rustup <span class="built_in">set</span> profile minimal</span><br></pre></td></tr></table></figure>
+
+<h1 id="0x1-下载-Rust"><a href="#0x1-下载-Rust" class="headerlink" title="0x1. 下载 Rust"></a>0x1. 下载 Rust</h1><blockquote>
+<p>Rust 官网：<a target="_blank" rel="noopener" href="https://www.rust-lang.org/tools/install">https://www.rust-lang.org/tools/install</a></p>
+</blockquote>
+<h1 id="0x2-安装-Rust"><a href="#0x2-安装-Rust" class="headerlink" title="0x2. 安装 Rust"></a>0x2. 安装 Rust</h1><p><img src="https://files.mdnice.com/user/10819/f08cc248-8676-49ca-8685-e09aa19713a4.png"></p>
+<p>默认情况，Rust 依赖 <code>C++ build tools</code>，没有安装也关系。</p>
+<p><img src="https://files.mdnice.com/user/10819/3170ea3b-07d8-4757-85eb-65979bbed257.png"></p>
+<p>这里我么选择 2，进行自定义安装。</p>
+<p>输入：<code>x86_64-pc-windows-gnu</code>，其他的默认。</p>
+<p>最后会确认安装信息，回车进行安装，会从网上下载文件，所以安装过程需要保证网络正常。</p>
+<p>以下是一些常用的命令：</p>
+<ol>
+<li>rustup 相关</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示当前安装的工具链信息</span></span><br><span class="line">rustup show</span><br><span class="line"><span class="comment"># 检查安装更新</span></span><br><span class="line">rustup update</span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">rustup self uninstall</span><br><span class="line"><span class="comment"># 设置当前默认工具链</span></span><br><span class="line">rustup default stable-x86_64-pc-windows-gnu</span><br><span class="line"><span class="comment"># 查看帮助</span></span><br><span class="line">rustup -h</span><br><span class="line"><span class="comment"># --------------------------&gt;配置工具链</span></span><br><span class="line"><span class="comment"># 查看工具链</span></span><br><span class="line">rustup toolchain list</span><br><span class="line"><span class="comment"># 安装工具链</span></span><br><span class="line">rustup toolchain install stable-x86_64-pc-windows-gnu</span><br><span class="line"><span class="comment"># 卸载工具链</span></span><br><span class="line">rustup toolchain uninstall stable-x86_64-pc-windows-gnu</span><br><span class="line"><span class="comment"># 设置自定义工具链</span></span><br><span class="line">rustup toolchain <span class="built_in">link</span> &lt;toolchain-name&gt; <span class="string">&quot;&lt;toolchain-path&gt;&quot;</span></span><br><span class="line"><span class="comment"># --------------------------&gt;配置一个目录以及其子目录的默认工具链</span></span><br><span class="line"><span class="comment"># 查看已设置的默认工具链</span></span><br><span class="line">rustup override list</span><br><span class="line"><span class="comment"># 设置该目录以及其子目录的默认工具链</span></span><br><span class="line">rustup override <span class="built_in">set</span> &lt;toolchain&gt; --path &lt;path&gt;</span><br><span class="line"><span class="comment"># 取消目录以及其子目录的默认工具链</span></span><br><span class="line">rustup override <span class="built_in">unset</span> --path &lt;path&gt;</span><br><span class="line"><span class="comment"># --------------------------&gt;配置工具链的可用目标</span></span><br><span class="line"><span class="comment"># 查看目标列表</span></span><br><span class="line">rustup target list</span><br><span class="line"><span class="comment"># 安装目标</span></span><br><span class="line">rustup target add &lt;target&gt;</span><br><span class="line"><span class="comment"># 卸载目标</span></span><br><span class="line">rustup target remove &lt;target&gt;</span><br><span class="line"><span class="comment"># 为特定工具链安装目标</span></span><br><span class="line">rustup target add --toolchain &lt;toolchain&gt; &lt;target&gt;</span><br><span class="line"><span class="comment"># --------------------------&gt;配置 rustup 安装的组件</span></span><br><span class="line"><span class="comment"># 查看可用组件</span></span><br><span class="line">rustup component list</span><br><span class="line"><span class="comment"># 安装组件</span></span><br><span class="line">rustup component add &lt;component&gt;</span><br><span class="line"><span class="comment"># 卸载组件</span></span><br><span class="line">rustup component remove &lt;component&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>rustc 相关</li>
+</ol>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看rustc版本</span></span><br><span class="line">rustc <span class="comment">--version</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>cargo 相关</li>
+</ol>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看cargo版本</span></span><br><span class="line">cargo --version</span><br><span class="line"><span class="comment"># 新建项目</span></span><br><span class="line">cargo<span class="built_in"> new </span>&lt;project_name&gt;</span><br><span class="line"><span class="comment"># 构建项目</span></span><br><span class="line">cargo build</span><br><span class="line"><span class="comment"># 运行项目</span></span><br><span class="line">cargo run</span><br><span class="line"><span class="comment"># 检查项目</span></span><br><span class="line">cargo<span class="built_in"> check</span></span><br><span class="line"><span class="built_in"></span><span class="comment"># 安装Rust二进制文件</span></span><br><span class="line">cargo install</span><br><span class="line"><span class="comment"># 卸载Rust二进制文件</span></span><br><span class="line">cargo uninstall</span><br><span class="line"><span class="comment"># 查看帮助</span></span><br><span class="line">cargo -h</span><br></pre></td></tr></table></figure>
+
+<h1 id="0x3-配置工具链安装位置"><a href="#0x3-配置工具链安装位置" class="headerlink" title="0x3. 配置工具链安装位置"></a>0x3. 配置工具链安装位置</h1><p>在系统环境变量中添加如下变量：</p>
+<p><code>CARGO_HOME</code> 指定 <code>cargo</code> 的安装目录</p>
+<p><code>RUSTUP_HOME</code> 指定 <code>rustup</code> 的安装目录</p>
+<p>默认分别安装到用户目录下的<code>.cargo</code> 和<code>.rustup</code> 目录</p>
+<h1 id="0x4-配置国内镜像"><a href="#0x4-配置国内镜像" class="headerlink" title="0x4. 配置国内镜像"></a>0x4. 配置国内镜像</h1><h2 id="1-配置-rustup-国内镜像"><a href="#1-配置-rustup-国内镜像" class="headerlink" title="1). 配置 rustup 国内镜像"></a>1). 配置 rustup 国内镜像</h2><p>在系统环境变量中添加如下变量：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 中国科学技术大学</span></span><br><span class="line">RUSTUP_DIST_SERVER：https:<span class="regexp">//mi</span>rrors.ustc.edu.cn/rust-static</span><br><span class="line">RUSTUP_UPDATE_ROOT：https:<span class="regexp">//mi</span>rrors.ustc.edu.cn<span class="regexp">/rust-static/</span>rustup</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-配置-cargo-国内镜像"><a href="#2-配置-cargo-国内镜像" class="headerlink" title="2). 配置 cargo 国内镜像"></a>2). 配置 cargo 国内镜像</h2><p>在 cargo 安装目录下新建 config 文件（注意 config 没有任何后缀），文件内容如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[source.crates-io]</span></span><br><span class="line"><span class="attr">registry</span> = <span class="string">&quot;https://github.com/rust-lang/crates.io-index&quot;</span></span><br><span class="line"><span class="attr">replace-with</span> = <span class="string">&#x27;tuna&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 清华大学</span></span><br><span class="line"><span class="section">[source.tuna]</span></span><br><span class="line"><span class="attr">registry</span> = <span class="string">&quot;https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 中国科学技术大学</span></span><br><span class="line"><span class="section">[source.ustc]</span></span><br><span class="line"><span class="attr">registry</span> = <span class="string">&quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;</span></span><br><span class="line"><span class="comment"># 设置代理</span></span><br><span class="line"><span class="comment"># [http]</span></span><br><span class="line"><span class="comment"># proxy = &quot;127.0.0.1:8889&quot;</span></span><br><span class="line"><span class="comment"># [https]</span></span><br><span class="line"><span class="comment"># proxy = &quot;127.0.0.1:8889&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="0x5-Windows-交叉编译-Linux-程序"><a href="#0x5-Windows-交叉编译-Linux-程序" class="headerlink" title="0x5. Windows 交叉编译 Linux 程序"></a>0x5. Windows 交叉编译 Linux 程序</h1><p>目标服务器是 <code>Linux(CentOS 7) 64bit</code>, 所以我们添加的 target 应该是<code>x86_64-unknown-linux-gnu</code>(动态依赖) 或者<code>x86_64-unknown-linux-musl</code>（静态依赖）</p>
+<p>解释：</p>
+<ul>
+<li><p>动态依赖：目标服务器需要包含动态依赖的相关库（用户共享库）</p>
+</li>
+<li><p>静态依赖，目标服务器不需要包含相应的库，但是打包文件会更大些</p>
+<p>1). 添加需要的 target</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rustup target add  x86_64-unknown-linux-musl</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2). 在 cargo 安装目录下新建 config 文件（注意 config 没有任何后缀），添加的文件内容如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[target.x86_64-unknown-linux-musl]</span></span><br><span class="line"><span class="attr">linker</span> = <span class="string">&quot;rust-lld&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>3). 构建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo build --target x86_64-unknown-linux-musl</span><br></pre></td></tr></table></figure>
+
+<h1 id="0x6-参考"><a href="#0x6-参考" class="headerlink" title="0x6. 参考"></a>0x6. 参考</h1><ol>
+<li>官方指南：<a target="_blank" rel="noopener" href="https://kaisery.github.io/trpl-zh-cn/">https://kaisery.github.io/trpl-zh-cn/</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>jonssonyan
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://jonssonyan.com/2022/04/02/Windows10%E9%85%8D%E7%BD%AERust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="Windows10配置Rust开发环境">https://jonssonyan.com/2022/04/02/Windows10配置Rust开发环境/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/rust/" rel="tag"># rust</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/16/Xshell%E6%97%A0%E9%99%90%E6%A0%87%E7%AD%BE%E5%92%8C%E6%B0%B8%E4%B9%85%E5%8E%BB%E6%9B%B4%E6%96%B0%E6%95%99%E7%A8%8B/" rel="prev" title="Xshell无限标签和永久去更新教程">
+      <i class="fa fa-chevron-left"></i> Xshell无限标签和永久去更新教程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/02/%E7%8E%A9%E8%BD%ACNginx%E4%B9%8Bhttp%E5%BC%BA%E8%BD%AChttps/" rel="next" title="玩转Nginx之http强转https">
+      玩转Nginx之http强转https <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x0-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">0x0. 相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-channel"><span class="nav-number">1.1.</span> <span class="nav-text">1). channel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-toolchain"><span class="nav-number">1.2.</span> <span class="nav-text">2). toolchain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-target"><span class="nav-number">1.3.</span> <span class="nav-text">3). target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-component"><span class="nav-number">1.4.</span> <span class="nav-text">4). component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-profile"><span class="nav-number">1.5.</span> <span class="nav-text">5). profile</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x1-%E4%B8%8B%E8%BD%BD-Rust"><span class="nav-number">2.</span> <span class="nav-text">0x1. 下载 Rust</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x2-%E5%AE%89%E8%A3%85-Rust"><span class="nav-number">3.</span> <span class="nav-text">0x2. 安装 Rust</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x3-%E9%85%8D%E7%BD%AE%E5%B7%A5%E5%85%B7%E9%93%BE%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">0x3. 配置工具链安装位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x4-%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F"><span class="nav-number">5.</span> <span class="nav-text">0x4. 配置国内镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%85%8D%E7%BD%AE-rustup-%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F"><span class="nav-number">5.1.</span> <span class="nav-text">1). 配置 rustup 国内镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%85%8D%E7%BD%AE-cargo-%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F"><span class="nav-number">5.2.</span> <span class="nav-text">2). 配置 cargo 国内镜像</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x5-Windows-%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91-Linux-%E7%A8%8B%E5%BA%8F"><span class="nav-number">6.</span> <span class="nav-text">0x5. Windows 交叉编译 Linux 程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x6-%E5%8F%82%E8%80%83"><span class="nav-number">7.</span> <span class="nav-text">0x6. 参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="jonssonyan"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">jonssonyan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jonssonyan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jonssonyan" rel="noopener" target="_blank"><i class="fa-brands fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/jonssonyan_news" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;jonssonyan_news" rel="noopener" target="_blank"><i class="fa-brands fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Feed → &#x2F;atom.xml"><i class="fa-solid fa-rss fa-fw"></i>Feed</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jonssonyan</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      requiredFields: ['nick','mail'],
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'MLb8dLzGdyUG0QLBIGhrkklS-MdYXbMMI',
+      appKey     : 'r80fWmRBErFKOepUW55Lq7pt',
+      placeholder: "支持 Markdown 语法",
+      avatar     : 'monsterid',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : 'https://mlb8dlzg.api.lncldglobal.com'
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
