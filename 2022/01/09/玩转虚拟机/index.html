@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"jonssonyan.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本文介绍虚拟机软件安装、虚拟机安装、虚拟机网络设置。">
+  <meta name="description" content="本文以VirtualBox为例，介绍虚拟机软件安装、虚拟机安装、虚拟机相关的设置。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="玩转虚拟机">
 <meta property="og:url" content="https://jonssonyan.com/2022/01/09/%E7%8E%A9%E8%BD%AC%E8%99%9A%E6%8B%9F%E6%9C%BA/index.html">
 <meta property="og:site_name" content="jonssonyan&#39; Website">
-<meta property="og:description" content="本文介绍虚拟机软件安装、虚拟机安装、虚拟机网络设置。">
+<meta property="og:description" content="本文以VirtualBox为例，介绍虚拟机软件安装、虚拟机安装、虚拟机相关的设置。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://files.mdnice.com/user/10819/8bffd526-86ae-4f6b-8f78-3739c08cac7a.png">
 <meta property="og:image" content="https://files.mdnice.com/user/10819/7702de7d-929c-4fd1-a991-284a004c9b05.png">
@@ -39,14 +39,21 @@
 <meta property="og:image" content="https://files.mdnice.com/user/10819/b9530f5a-b9f8-4ffd-b116-7f29081ce03d.png">
 <meta property="og:image" content="https://files.mdnice.com/user/10819/8fa15539-868e-4e5a-bdf6-e1e97f8fadc6.png">
 <meta property="og:image" content="https://files.mdnice.com/user/10819/3274cfb8-8e41-4156-b610-45ccbb0fd18c.png">
-<meta property="og:image" content="https://files.mdnice.com/user/10819/ad5dfc1d-6a97-4480-b98d-d479b71e7c54.png">
-<meta property="og:image" content="https://files.mdnice.com/user/10819/91a87b3b-601f-4fb8-9b2c-8f63188ffc98.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/33af4741-080c-4696-b89f-7e792afa0248.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/57ffe0dc-0f5c-4502-a544-5ae6175b35f8.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/b2cb926d-b5d7-450a-b602-fd877a8d9d63.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/ab3cd389-361d-4fba-b721-d10bbce0d0e3.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ae8aee8652064efb83c9bd9c9be996f3.png">
 <meta property="og:image" content="https://files.mdnice.com/user/10819/b1411a34-b47e-472c-af89-62c394a30d65.png">
-<meta property="og:image" content="https://files.mdnice.com/user/10819/d914f803-a644-4627-b407-ffab5a0f0b98.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/96473109-f9c0-4fee-8b8d-ddc5436f58c2.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/62fef6f9-df50-40bb-b19a-4b64c87402a7.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/f6eebba3-f9e4-47bf-8ce9-513999a9a4b9.png">
 <meta property="og:image" content="https://files.mdnice.com/user/10819/2263256a-d9de-4b3e-95c7-5883292c3ae3.png">
 <meta property="og:image" content="https://files.mdnice.com/user/10819/d67aaff6-b004-4327-8729-7e64b2841def.png">
 <meta property="og:image" content="https://files.mdnice.com/user/10819/f22ec71b-c5c4-4f99-9419-e9e264d9b7a6.png">
-<meta property="og:image" content="https://files.mdnice.com/user/10819/e9be3d02-fdab-4172-b454-60749e79eb6b.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/237c6027-2dc2-4bc3-9679-9e02fd85e9a6.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/e6738ecf-5294-4d0a-9162-0bc6c41b9a0b.png">
+<meta property="og:image" content="https://files.mdnice.com/user/10819/c68145c3-bd57-486f-bcc2-2306e7515c67.png">
 <meta property="og:image" content="https://files.mdnice.com/user/10819/fea4b589-c5b8-467f-b669-cd1dd323274c.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/ed49c786ccd848c48ddde8ec9ef97ae3.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/ae72acc28fde45edb47a7b47dce163a2.png">
@@ -71,7 +78,7 @@
 <meta property="og:image" content="https://files.mdnice.com/user/10819/2384fab0-6729-44c2-b4b2-79e19f861ace.png">
 <meta property="og:image" content="https://files.mdnice.com/user/10819/dc7ff947-aa21-4a19-bc24-324f0dd308be.png">
 <meta property="article:published_time" content="2022-01-09T13:36:00.000Z">
-<meta property="article:modified_time" content="2023-02-26T15:15:16.149Z">
+<meta property="article:modified_time" content="2023-03-11T17:02:38.045Z">
 <meta property="article:author" content="jonssonyan">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://files.mdnice.com/user/10819/8bffd526-86ae-4f6b-8f78-3739c08cac7a.png">
@@ -278,7 +285,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-26 23:15:16" itemprop="dateModified" datetime="2023-02-26T23:15:16+08:00">2023-02-26</time>
+                <time title="修改时间：2023-03-12 01:02:38" itemprop="dateModified" datetime="2023-03-12T01:02:38+08:00">2023-03-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -323,7 +330,7 @@
 
       
         <meta name="referrer" content="no-referrer"/>
-本文介绍虚拟机软件安装、虚拟机安装、虚拟机网络设置。
+本文以VirtualBox为例，介绍虚拟机软件安装、虚拟机安装、虚拟机相关的设置。
 
 <span id="more"></span>
 
@@ -334,18 +341,12 @@
 <p><img src="https://files.mdnice.com/user/10819/8bffd526-86ae-4f6b-8f78-3739c08cac7a.png" alt="界面"></p>
 <p>在全局设置中我们可以对常规、热键、更新、语言、显示、网络、扩展、代理相关进行自定义设置。这里我推荐<strong>默认虚拟电脑位置</strong>设置到<strong>除 C 盘之外的其他盘</strong>，防止安装完虚拟机后 C 盘空间爆满，导致系统卡顿。</p>
 <p><img src="https://files.mdnice.com/user/10819/7702de7d-929c-4fd1-a991-284a004c9b05.png" alt="全局设定"></p>
-<h1 id="Windows虚拟机安装"><a href="#Windows虚拟机安装" class="headerlink" title="Windows虚拟机安装"></a>Windows虚拟机安装</h1><p>现在我们来实战安装一个 Windows10 虚拟机试试。</p>
-<h2 id="下载系统镜像"><a href="#下载系统镜像" class="headerlink" title="下载系统镜像"></a>下载系统镜像</h2><p>首先，我们需要下载一个 Windows10 的 ISO 文件。这里推荐两种下载正版 Windows10 ISO 文件的方式。</p>
-<ol>
-<li><p><a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows10">https://www.microsoft.com/zh-cn/software-download/windows10</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://msdn.itellyou.cn/">https://msdn.itellyou.cn/</a></p>
-</li>
-</ol>
-<h2 id="开启虚拟化设置"><a href="#开启虚拟化设置" class="headerlink" title="开启虚拟化设置"></a>开启虚拟化设置</h2><p>我们需要开启<strong>虚拟化</strong>。以下是查看自己电脑是否开启虚拟化的方法，电脑是否开启虚拟化可以在任务管理器中查看。</p>
+<h1 id="Windows10开启虚拟化设置"><a href="#Windows10开启虚拟化设置" class="headerlink" title="Windows10开启虚拟化设置"></a>Windows10开启虚拟化设置</h1><p>在任务管理器中查看电脑是否开启虚拟化。</p>
 <p><img src="https://files.mdnice.com/user/10819/6e1ff4cf-3aff-4bd1-b880-362ec601a2f4.png" alt="任务管理器"></p>
-<p>需要在 BIOS 中设置电脑的虚拟化。进入 BIOS 的方式每种品牌的电脑各不相同。以下这张表可以作为参考。</p>
+<p>需要在 BIOS 中设置电脑的虚拟化。进入 BIOS 的方式每种品牌的电脑各不相同,以下这张表可以作为参考。</p>
 <p><img src="https://files.mdnice.com/user/10819/357526a9-92f4-4ee0-8605-3ab320346c5b.png"></p>
+<h1 id="Windows虚拟机安装"><a href="#Windows虚拟机安装" class="headerlink" title="Windows虚拟机安装"></a>Windows虚拟机安装</h1><h2 id="下载系统镜像"><a href="#下载系统镜像" class="headerlink" title="下载系统镜像"></a>下载系统镜像</h2><p>首先，我们需要下载一个 Windows10 的 ISO 文件。这里推荐两种下载正版 Windows10 ISO
+文件的方式，<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows10">微软官方</a>和 <a target="_blank" rel="noopener" href="https://msdn.itellyou.cn/">ITELLYOU</a></p>
 <h2 id="创建虚拟机"><a href="#创建虚拟机" class="headerlink" title="创建虚拟机"></a>创建虚拟机</h2><p>打开 VirtualBox，点击新建。</p>
 <p><img src="https://files.mdnice.com/user/10819/b087b8ed-be91-4b30-acd9-16e2cc16965b.png" alt="新建"></p>
 <p>选择我们需要创建虚拟机的系统。需要和 ISO 文件对应。</p>
@@ -360,34 +361,46 @@
 <p><img src="https://files.mdnice.com/user/10819/b9530f5a-b9f8-4ffd-b116-7f29081ce03d.png" alt="存储在物理硬盘上"></p>
 <p>这一步默认即可，如果自己电脑的硬盘空间小可以自定义设置，建议不要小于 30G。</p>
 <p><img src="https://files.mdnice.com/user/10819/8fa15539-868e-4e5a-bdf6-e1e97f8fadc6.png" alt="文件位置和大小"></p>
-<p>创建好之后我们点击存储-&gt;SATA 端口 1: [光驱]没有盘片。文件就是选择我们下载好的 Windows10 ISO 文件。</p>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>最后我们点击启动就好了，之后的步骤就和普通装电脑系统一样进行即可。</p>
+<p>创建好之后我们点击<code>存储</code>-&gt;<code>SATA 端口 1: [光驱]没有盘片</code>。文件就是选择我们下载好的 Windows10 ISO 文件。</p>
+<p>最后我们点击启动就好了，之后的步骤就和普通装电脑系统一样进行即可。</p>
 <p><img src="https://files.mdnice.com/user/10819/3274cfb8-8e41-4156-b610-45ccbb0fd18c.png" alt="启动虚拟机"></p>
-<h1 id="CentOS虚拟机安装"><a href="#CentOS虚拟机安装" class="headerlink" title="CentOS虚拟机安装"></a>CentOS虚拟机安装</h1><p>本文是使用<code>VirtualBox</code>安装的<code>CentOS7 x86_64 Minimal</code>版本的虚拟机</p>
-<p>以下是 CentOS 的官网，可下载 CentOS 的 ISO 镜像。</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://centos.org/download/">https://centos.org/download/</a></p>
-</blockquote>
-<p>以下是我从官网下载的 ISO 镜像，在安装虚拟机的时候需要用到。尽可能将下载好的文件保存在自己可以找到的位置。</p>
-<p><img src="https://files.mdnice.com/user/10819/ad5dfc1d-6a97-4480-b98d-d479b71e7c54.png" alt="CentOS7 x86_64 Minimal"></p>
-<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>点击新建</p>
-<p><img src="https://files.mdnice.com/user/10819/91a87b3b-601f-4fb8-9b2c-8f63188ffc98.png" alt="新建"></p>
-<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>设置虚拟机电脑名称，系统类型会自动为我们选择，如果不能选择 64 位则需要在 BIOS 里面开启虚拟化设置。</p>
+<h1 id="设置1920x1080分辨率"><a href="#设置1920x1080分辨率" class="headerlink" title="设置1920x1080分辨率"></a>设置1920x1080分辨率</h1><p>我的电脑屏幕分辨率是 1920x1080，但是 VirtualBox 默认的分辨率是小于这个尺寸，导致每次开启虚拟机之后虚拟机的桌面只有我电脑屏幕中间的一部分，两边留黑。VirtualBox
+默认分辨率是不可以选择的，需要我们手动安装一下增强功能。</p>
+<p>首先我们看一下是否有以下的存储介质。</p>
+<p><img src="https://files.mdnice.com/user/10819/33af4741-080c-4696-b89f-7e792afa0248.png"></p>
+<p>打开虚拟机，在顶上的菜单栏中选择<code>设备-&gt;安装增强功能</code></p>
+<p><img src="https://files.mdnice.com/user/10819/57ffe0dc-0f5c-4502-a544-5ae6175b35f8.png"></p>
+<p>然后在我的电脑中会多一个<code>CD驱动器</code></p>
+<p><img src="https://files.mdnice.com/user/10819/b2cb926d-b5d7-450a-b602-fd877a8d9d63.png"></p>
+<p>打开之后我们会看到一些文件夹和文件，根据自己的操作系统版本来选择安装哪个，比如我安装的 Windows 10 企业版 ltsc 64 位操作系统，所以我安装的文件是<code>VBoxWindowsAdditions.exe</code>，如果你是 32
+位操作系统，你就安装-x86 结尾的文件。</p>
+<p><img src="https://files.mdnice.com/user/10819/ab3cd389-361d-4fba-b721-d10bbce0d0e3.png"></p>
+<p>安装好之后重启虚拟机就可以选择虚拟机的分辨率了。选择<code>视图-&gt;虚拟显示器1</code></p>
+<p><img src="https://img-blog.csdnimg.cn/ae8aee8652064efb83c9bd9c9be996f3.png" alt="img"></p>
+<h1 id="CentOS虚拟机安装"><a href="#CentOS虚拟机安装" class="headerlink" title="CentOS虚拟机安装"></a>CentOS虚拟机安装</h1><p>以CentOS7为例，可以从<a target="_blank" rel="noopener" href="https://centos.org/download/">CentOS官网</a>下载 CentOS7 的 ISO 镜像。</p>
+<h2 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h2><p>设置设置虚拟机电脑名称，系统类型会自动为我们选择，如果不能选择 64 位则需要在 BIOS 里面开启虚拟化设置。</p>
 <p><img src="https://files.mdnice.com/user/10819/b1411a34-b47e-472c-af89-62c394a30d65.png" alt="虚拟机电脑名称和系统类型"></p>
-<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>接下来的操作就是一路默认即可，最后我们再启动虚拟机之前选择我们之前下载好的 ISO 文件。</p>
-<p><img src="https://files.mdnice.com/user/10819/d914f803-a644-4627-b407-ffab5a0f0b98.png" alt="选择虚拟盘"></p>
-<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><p>选择好虚拟盘后，点击启动，之后就会进入到 CentOS7 系统的安装界面，只需要 5 分钟就可装好。</p>
+<h2 id="设置虚拟机的配置"><a href="#设置虚拟机的配置" class="headerlink" title="设置虚拟机的配置"></a>设置虚拟机的配置</h2><p>2核4G，启动顺序勾选<code>硬盘</code>和<code>光驱</code>，并将硬盘放在第一位，勾选<code>启用EFI</code>。</p>
+<p><img src="https://files.mdnice.com/user/10819/96473109-f9c0-4fee-8b8d-ddc5436f58c2.png"></p>
+<p>网卡1默认为<code>网络地址转换（NAT）</code>，将网卡2设置为<code>仅主机（Host-Only）网络</code></p>
+<p><img src="https://files.mdnice.com/user/10819/62fef6f9-df50-40bb-b19a-4b64c87402a7.png"></p>
+<p>删除<code>控制器：IDE</code>，点击<code>控制器：SATA</code>添加虚拟光驱，选择下载好的CentOS7 ISO文件（安装好之后可以将CentOS7虚拟光驱删除）。</p>
+<p><img src="https://files.mdnice.com/user/10819/f6eebba3-f9e4-47bf-8ce9-513999a9a4b9.png"></p>
+<h2 id="安装CentOS7"><a href="#安装CentOS7" class="headerlink" title="安装CentOS7"></a>安装CentOS7</h2><p>选择好虚拟盘后，点击启动，之后就会进入到 CentOS7 系统的安装界面，只需要 5 分钟就可装好。</p>
 <p>以下是安装过程的第一步，我们使用小键盘的上下键选择<code>Install CentOS 7</code>，点击<code>Enter</code>即可。</p>
 <p><img src="https://files.mdnice.com/user/10819/2263256a-d9de-4b3e-95c7-5883292c3ae3.png" alt="Install CentOS 7"></p>
-<h2 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h2><p>选择语言为<code>中文</code>，点击<code>继续</code>。</p>
+<h2 id="相关设置"><a href="#相关设置" class="headerlink" title="相关设置"></a>相关设置</h2><p>选择语言为<code>中文</code>。</p>
 <p><img src="https://files.mdnice.com/user/10819/d67aaff6-b004-4327-8729-7e64b2841def.png" alt="语言设置"></p>
-<h2 id="第六步"><a href="#第六步" class="headerlink" title="第六步"></a>第六步</h2><p>设置网络，否则虚拟机安装好后不可访问互联网，还需要另外设置，我们只需要在安装系统时设置，以后就不必要麻烦了。</p>
+<p>设置日期和时间为上海时间</p>
 <p><img src="https://files.mdnice.com/user/10819/f22ec71b-c5c4-4f99-9419-e9e264d9b7a6.png" alt="设置网络"></p>
-<p><img src="https://files.mdnice.com/user/10819/e9be3d02-fdab-4172-b454-60749e79eb6b.png" alt="打开以太网"></p>
-<h2 id="第七步"><a href="#第七步" class="headerlink" title="第七步"></a>第七步</h2><p>设置 root 密码</p>
+<p>设置为静态IP</p>
+<p><img src="https://files.mdnice.com/user/10819/237c6027-2dc2-4bc3-9679-9e02fd85e9a6.png"></p>
+<p><img src="https://files.mdnice.com/user/10819/e6738ecf-5294-4d0a-9162-0bc6c41b9a0b.png"></p>
+<p>设置主机名称（可选）</p>
+<p><img src="https://files.mdnice.com/user/10819/c68145c3-bd57-486f-bcc2-2306e7515c67.png"></p>
+<p>设置 root 密码</p>
 <p><img src="https://files.mdnice.com/user/10819/fea4b589-c5b8-467f-b669-cd1dd323274c.png" alt="root密码"></p>
-<h2 id="第八步"><a href="#第八步" class="headerlink" title="第八步"></a>第八步</h2><p>静静等待安装结束，这个过程很快，最后重启就可以啦。</p>
-<h1 id="设置虚拟机为静态-IP-并访问外网"><a href="#设置虚拟机为静态-IP-并访问外网" class="headerlink" title="设置虚拟机为静态 IP 并访问外网"></a>设置虚拟机为静态 IP 并访问外网</h1><p>本文是使用<code>VirtualBox</code>安装的<code>CentOS7 x86_64 Minimal</code>版本的虚拟机</p>
+<h1 id="手动设置虚拟机为静态-IP-并访问外网"><a href="#手动设置虚拟机为静态-IP-并访问外网" class="headerlink" title="手动设置虚拟机为静态 IP 并访问外网"></a>手动设置虚拟机为静态 IP 并访问外网</h1><p>本文是使用<code>VirtualBox</code>安装的<code>CentOS7 x86_64 Minimal</code>版本的虚拟机</p>
 <p>安装好 CentOS 系统的虚拟机。默认是网络的连接方式为 NAT，该模式可以访问外网。</p>
 <p><img src="https://img-blog.csdnimg.cn/ed49c786ccd848c48ddde8ec9ef97ae3.png" alt="Nat"></p>
 <p>如果需要将虚拟机在局域网内的 IP 设置为固定 IP，需要添加网卡 2 为 Host-only 模式</p>
@@ -410,15 +423,14 @@
 <p><img src="https://img-blog.csdnimg.cn/e6e62e20d7a6441b8a327c9ca4ffdb17.png" alt="主机网络管理器"></p>
 <p><img src="https://img-blog.csdnimg.cn/05acb4420638485796bef440727628a2.png" alt="DHCP 服务器配置"></p>
 <p>如上步骤设置好后，我们就可以启动虚拟机后，使用局域网 IP 用 XShell 连接而且可以访问外网了。</p>
-<p>原创不易，感谢支持!</p>
 <h1 id="安装Android虚拟机"><a href="#安装Android虚拟机" class="headerlink" title="安装Android虚拟机"></a>安装Android虚拟机</h1><p>突然发现 Oracle 的 VM VirtualBox 除了可以安装 Linux、Windows 系统之外，还可以安装安卓系统，那不就相当于一个模拟器了，省的再去下载夜神，逍遥之类的定制化模拟器。借此机会，今天实践一下。</p>
-<h2 id="0x1-下载-Android-ISO-文件"><a href="#0x1-下载-Android-ISO-文件" class="headerlink" title="0x1. 下载 Android ISO 文件"></a>0x1. 下载 Android ISO 文件</h2><blockquote>
+<h2 id="下载-Android-ISO-文件"><a href="#下载-Android-ISO-文件" class="headerlink" title="下载 Android ISO 文件"></a>下载 Android ISO 文件</h2><blockquote>
 <p>Android ISO 下载地址：<a target="_blank" rel="noopener" href="https://www.fosshub.com/Android-x86.html">https://www.fosshub.com/Android-x86.html</a></p>
 </blockquote>
-<h2 id="0x2-安装-VM-VirtualBox"><a href="#0x2-安装-VM-VirtualBox" class="headerlink" title="0x2. 安装 VM VirtualBox"></a>0x2. 安装 VM VirtualBox</h2><blockquote>
+<h2 id="安装-VM-VirtualBox"><a href="#安装-VM-VirtualBox" class="headerlink" title="安装 VM VirtualBox"></a>安装 VM VirtualBox</h2><blockquote>
 <p>VM VirtualBox 下载地址：<a target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></p>
 </blockquote>
-<h2 id="0x3-新建虚拟机"><a href="#0x3-新建虚拟机" class="headerlink" title="0x3. 新建虚拟机"></a>0x3. 新建虚拟机</h2><p>建议自己配置大于等于下图的配置</p>
+<h2 id="新建虚拟机-1"><a href="#新建虚拟机-1" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h2><p>建议自己配置大于等于下图的配置</p>
 <p><img src="https://files.mdnice.com/user/10819/787f489d-a31f-4c00-83d5-172585fb95c9.png"></p>
 <p><img src="https://files.mdnice.com/user/10819/73548b1e-cac9-4f31-9ed2-2abdf99e5d80.png"></p>
 <p><img src="https://files.mdnice.com/user/10819/15a59d5e-89e1-4424-a1f5-7b480660fe76.png"></p>
@@ -429,20 +441,20 @@
 <p><img src="https://files.mdnice.com/user/10819/91c854fd-be90-4124-b63b-ace92eed617e.png"></p>
 <p>选择之前我们下载好的 Android ISO 文件</p>
 <p><img src="https://files.mdnice.com/user/10819/d56d2952-4faf-4d9d-ab05-b1b6662361d8.png"></p>
-<h2 id="0x4-启动虚拟机"><a href="#0x4-启动虚拟机" class="headerlink" title="0x4. 启动虚拟机"></a>0x4. 启动虚拟机</h2><p><img src="https://files.mdnice.com/user/10819/d9bda653-e176-43f1-aadd-0e215b800aa2.png"></p>
+<h2 id="启动虚拟机"><a href="#启动虚拟机" class="headerlink" title="启动虚拟机"></a>启动虚拟机</h2><p><img src="https://files.mdnice.com/user/10819/d9bda653-e176-43f1-aadd-0e215b800aa2.png"></p>
 <p><img src="https://files.mdnice.com/user/10819/c92ddffd-f973-46da-87ad-91533083b9af.png"></p>
 <p><img src="https://files.mdnice.com/user/10819/ffa3d862-17ef-423c-a445-48aa5a6ff14e.png"></p>
 <p><img src="https://files.mdnice.com/user/10819/6fa53601-6da9-49b2-817a-3474a9745d01.png"></p>
 <p>下面我们需要强制退出，并移除虚拟盘</p>
 <p><img src="https://files.mdnice.com/user/10819/6dd98a5a-fb26-4472-88a2-623aafd14e9c.png"></p>
 <p><img src="https://files.mdnice.com/user/10819/7d5fa9f0-0b39-4c04-9c6a-5c0b3ae1b014.png"></p>
-<h2 id="0x5-配置系统"><a href="#0x5-配置系统" class="headerlink" title="0x5. 配置系统"></a>0x5. 配置系统</h2><p>按 E 选择 Android-x86 8.1-r2 选项
+<h2 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h2><p>按 E 选择 Android-x86 8.1-r2 选项
 <img src="https://files.mdnice.com/user/10819/6c7fab71-c6df-4e7d-ad5a-bb30201476da.png">
 按 E 选择 kernel 开头的选项</p>
 <p><img src="https://files.mdnice.com/user/10819/0e252ef8-619f-4c00-a1f9-af2b05632d4b.png"></p>
 <p>将字符串中<code>quiet</code>改为 <code>nomodeset xforcevesa</code>，然后按下回车键，再按下键盘上的 B
 <img src="https://files.mdnice.com/user/10819/2384fab0-6729-44c2-b4b2-79e19f861ace.png"></p>
-<h2 id="0x6-进入系统"><a href="#0x6-进入系统" class="headerlink" title="0x6. 进入系统"></a>0x6. 进入系统</h2><p><img src="https://files.mdnice.com/user/10819/dc7ff947-aa21-4a19-bc24-324f0dd308be.png"></p>
+<h2 id="进入系统"><a href="#进入系统" class="headerlink" title="进入系统"></a>进入系统</h2><p><img src="https://files.mdnice.com/user/10819/dc7ff947-aa21-4a19-bc24-324f0dd308be.png"></p>
 
     </div>
 
@@ -541,7 +553,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">虚拟机软件安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">Windows虚拟机安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F"><span class="nav-number">2.1.</span> <span class="nav-text">下载系统镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E8%99%9A%E6%8B%9F%E5%8C%96%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">开启虚拟化设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.3.</span> <span class="nav-text">创建虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">2.4.</span> <span class="nav-text">启动</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">CentOS虚拟机安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="nav-number">3.1.</span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="nav-number">3.2.</span> <span class="nav-text">第二步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="nav-number">3.3.</span> <span class="nav-text">第三步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5"><span class="nav-number">3.4.</span> <span class="nav-text">第四步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5"><span class="nav-number">3.5.</span> <span class="nav-text">第五步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5"><span class="nav-number">3.6.</span> <span class="nav-text">第六步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E6%AD%A5"><span class="nav-number">3.7.</span> <span class="nav-text">第七步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E6%AD%A5"><span class="nav-number">3.8.</span> <span class="nav-text">第八步</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%BA%E9%9D%99%E6%80%81-IP-%E5%B9%B6%E8%AE%BF%E9%97%AE%E5%A4%96%E7%BD%91"><span class="nav-number">4.</span> <span class="nav-text">设置虚拟机为静态 IP 并访问外网</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Android%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">5.</span> <span class="nav-text">安装Android虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x1-%E4%B8%8B%E8%BD%BD-Android-ISO-%E6%96%87%E4%BB%B6"><span class="nav-number">5.1.</span> <span class="nav-text">0x1. 下载 Android ISO 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x2-%E5%AE%89%E8%A3%85-VM-VirtualBox"><span class="nav-number">5.2.</span> <span class="nav-text">0x2. 安装 VM VirtualBox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x3-%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">5.3.</span> <span class="nav-text">0x3. 新建虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x4-%E5%90%AF%E5%8A%A8%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">5.4.</span> <span class="nav-text">0x4. 启动虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x5-%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.5.</span> <span class="nav-text">0x5. 配置系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x6-%E8%BF%9B%E5%85%A5%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.6.</span> <span class="nav-text">0x6. 进入系统</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">虚拟机软件安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows10%E5%BC%80%E5%90%AF%E8%99%9A%E6%8B%9F%E5%8C%96%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">Windows10开启虚拟化设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">Windows虚拟机安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F"><span class="nav-number">3.1.</span> <span class="nav-text">下载系统镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">3.2.</span> <span class="nav-text">创建虚拟机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE1920x1080%E5%88%86%E8%BE%A8%E7%8E%87"><span class="nav-number">4.</span> <span class="nav-text">设置1920x1080分辨率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85"><span class="nav-number">5.</span> <span class="nav-text">CentOS虚拟机安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">5.1.</span> <span class="nav-text">新建虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">5.2.</span> <span class="nav-text">设置虚拟机的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85CentOS7"><span class="nav-number">5.3.</span> <span class="nav-text">安装CentOS7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.4.</span> <span class="nav-text">相关设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%BA%E9%9D%99%E6%80%81-IP-%E5%B9%B6%E8%AE%BF%E9%97%AE%E5%A4%96%E7%BD%91"><span class="nav-number">6.</span> <span class="nav-text">手动设置虚拟机为静态 IP 并访问外网</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Android%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">7.</span> <span class="nav-text">安装Android虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-Android-ISO-%E6%96%87%E4%BB%B6"><span class="nav-number">7.1.</span> <span class="nav-text">下载 Android ISO 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-VM-VirtualBox"><span class="nav-number">7.2.</span> <span class="nav-text">安装 VM VirtualBox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA-1"><span class="nav-number">7.3.</span> <span class="nav-text">新建虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">7.4.</span> <span class="nav-text">启动虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="nav-number">7.5.</span> <span class="nav-text">相关配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E7%B3%BB%E7%BB%9F"><span class="nav-number">7.6.</span> <span class="nav-text">进入系统</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
