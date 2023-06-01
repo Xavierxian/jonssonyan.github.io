@@ -122,9 +122,9 @@ web，thymeleaf和freemarker写的很难受，不如vue.js开发来的迅速，�
     
     <category term="python" scheme="https://jonssonyan.com/tags/python/"/>
     
-    <category term="socket" scheme="https://jonssonyan.com/tags/socket/"/>
-    
     <category term="xpath" scheme="https://jonssonyan.com/tags/xpath/"/>
+    
+    <category term="socket" scheme="https://jonssonyan.com/tags/socket/"/>
     
   </entry>
   
@@ -147,9 +147,9 @@ web，thymeleaf和freemarker写的很难受，不如vue.js开发来的迅速，�
     
     <category term="python" scheme="https://jonssonyan.com/tags/python/"/>
     
-    <category term="telnet" scheme="https://jonssonyan.com/tags/telnet/"/>
-    
     <category term="socket" scheme="https://jonssonyan.com/tags/socket/"/>
+    
+    <category term="telnet" scheme="https://jonssonyan.com/tags/telnet/"/>
     
   </entry>
   
@@ -411,9 +411,9 @@ Xshell 是一款强大的 SSH 客户端，可惜的是没有 Mac 系统的客户
     <category term="活捉Bug" scheme="https://jonssonyan.com/categories/%E6%B4%BB%E6%8D%89Bug/"/>
     
     
-    <category term="ide" scheme="https://jonssonyan.com/tags/ide/"/>
-    
     <category term="idea" scheme="https://jonssonyan.com/tags/idea/"/>
+    
+    <category term="ide" scheme="https://jonssonyan.com/tags/ide/"/>
     
   </entry>
   

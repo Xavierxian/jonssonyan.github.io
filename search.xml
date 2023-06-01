@@ -139,8 +139,8 @@ Star（本来计划 2022 年底能破 1K Star 看看现在的趋势应该达不�
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>socket</tag>
         <tag>xpath</tag>
+        <tag>socket</tag>
       </tags>
   </entry>
   <entry>
@@ -161,8 +161,8 @@ Star（本来计划 2022 年底能破 1K Star 看看现在的趋势应该达不�
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>telnet</tag>
         <tag>socket</tag>
+        <tag>telnet</tag>
       </tags>
   </entry>
   <entry>
@@ -1055,8 +1055,8 @@ IDE 后并且可以无限期使用了(提示：在 jetbra.in 也有插件对应�
         <category>活捉Bug</category>
       </categories>
       <tags>
-        <tag>ide</tag>
         <tag>idea</tag>
+        <tag>ide</tag>
       </tags>
   </entry>
   <entry>
@@ -2065,6 +2065,57 @@ IDE 后并且可以无限期使用了(提示：在 jetbra.in 也有插件对应�
       </tags>
   </entry>
   <entry>
+    <title>配置Maven和Gradle镜像</title>
+    <url>/2022/01/06/%E9%85%8D%E7%BD%AEMaven%E5%92%8CGradle%E9%95%9C%E5%83%8F/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+
+<span id="more"></span>
+
+<h1 id="配置Maven"><a href="#配置Maven" class="headerlink" title="配置Maven"></a>配置Maven</h1><h2 id="下载-Maven"><a href="#下载-Maven" class="headerlink" title="下载 Maven"></a>下载 Maven</h2><blockquote>
+<p>Maven 官网: <a href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a></p>
+</blockquote>
+<h2 id="修改-Maven-为国内镜像"><a href="#修改-Maven-为国内镜像" class="headerlink" title="修改 Maven 为国内镜像"></a>修改 Maven 为国内镜像</h2><h3 id="针对所有项目修改中央仓库"><a href="#针对所有项目修改中央仓库" class="headerlink" title="针对所有项目修改中央仓库"></a>针对所有项目修改中央仓库</h3><p>右键项目选中 maven 选项，然后选择<code>open settings.xml</code>或者<code>create settings.xml</code>，在 <code>settings.xml</code> 下找到 <code>&lt;mirrors&gt;</code> 节点，并在节点下增加镜像配置，重启 IDE</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>id：唯一标识一个镜像</li>
+<li>name：镜像名称</li>
+<li>url：镜像地址</li>
+<li>mirrorOf：代表一个镜像的替代位置，例如 central 就表示代替官方的中央仓库</li>
+</ul>
+<h3 id="分别给每个项目配置不同的中央仓库"><a href="#分别给每个项目配置不同的中央仓库" class="headerlink" title="分别给每个项目配置不同的中央仓库"></a>分别给每个项目配置不同的中央仓库</h3><p>Maven 可以针对每个项目配置不同的中央仓库，在项目 <code>pom.xml</code> <code>&lt;repositories&gt;</code> 节点下增加如下配置</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置本地仓库位置"><a href="#配置本地仓库位置" class="headerlink" title="配置本地仓库位置"></a>配置本地仓库位置</h2><p>在<code>settings.xml</code>节点下新建一下节点<code>localRepository</code>
+idea 的 Maven 本地仓库是在用户文件夹下的<code>.m2</code>文件夹下，为了防止本地仓库太大，将仓库地址存放在项目同一磁盘下的<code>/workmaven/localRepository</code>文件夹内。</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line">&lt;localRepository&gt;<span class="regexp">/workmaven/</span>localRepository&lt;/localRepository&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://maven.aliyun.com/mvn/guide">阿里云云效 Maven</a></li>
+</ol>
+<h1 id="配置Gradle"><a href="#配置Gradle" class="headerlink" title="配置Gradle"></a>配置Gradle</h1><h2 id="下载-Gradle"><a href="#下载-Gradle" class="headerlink" title="下载 Gradle"></a>下载 Gradle</h2><blockquote>
+<p>Gradle 官网: <a href="https://gradle.org/install">https://gradle.org/install</a></p>
+</blockquote>
+<h2 id="修改-Gradle-为国内镜像"><a href="#修改-Gradle-为国内镜像" class="headerlink" title="修改 Gradle 为国内镜像"></a>修改 Gradle 为国内镜像</h2><p>在<code>$&#123;USER_HOME&#125;/.gradle/</code>或者<code>$&#123;GRADLE_USER_HOME&#125;</code>下创建<code>init.gradle</code>文件，内容如下</p>
+<figure class="highlight isbl"><table><tr><td class="code"><pre><span class="line"><span class="variable">allprojects</span> &#123;</span><br><span class="line">  <span class="variable">repositories</span> &#123;</span><br><span class="line">    <span class="variable">maven</span> &#123;</span><br><span class="line">      <span class="variable">url</span> <span class="string">&#x27;https://maven.aliyun.com/repository/public/&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">mavenLocal</span>()</span></span><br><span class="line">    <span class="function"><span class="title">mavenCentral</span>()</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置本地仓库位置-1"><a href="#配置本地仓库位置-1" class="headerlink" title="配置本地仓库位置"></a>配置本地仓库位置</h2><p>Gradle 默认存放 jar 路径:<code>%USERPROFILE%\.gradle\caches\</code></p>
+<p>在环境变量中添加名为 <code>GRADLE_USER_HOME</code>，值为本地仓库位置的环境变量即可</p>
+<h3 id="配置-M2-HOME"><a href="#配置-M2-HOME" class="headerlink" title="配置 M2_HOME"></a>配置 M2_HOME</h3><p><code>mavenLocal()</code>
+时 Gradle 默认会按以下顺序去查找本地的 maven
+仓库：<code>$&#123;USER_HOME&#125;/.m2/settings.xml</code> &gt; <code>$&#123;M2_HOME&#125;/conf/settings.xml</code> &gt; <code>$&#123;USER_HOME&#125;/.m2/repository</code></p>
+]]></content>
+      <categories>
+        <category>开发环境</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>maven</tag>
+        <tag>gradle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>配置Git的连接方式和代理</title>
     <url>/2022/01/06/%E9%85%8D%E7%BD%AEGit%E7%9A%84%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F%E5%92%8C%E4%BB%A3%E7%90%86/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
@@ -2140,57 +2191,6 @@ IDE 后并且可以无限期使用了(提示：在 jetbra.in 也有插件对应�
       </categories>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>配置Maven和Gradle镜像</title>
-    <url>/2022/01/06/%E9%85%8D%E7%BD%AEMaven%E5%92%8CGradle%E9%95%9C%E5%83%8F/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
-
-
-<span id="more"></span>
-
-<h1 id="配置Maven"><a href="#配置Maven" class="headerlink" title="配置Maven"></a>配置Maven</h1><h2 id="下载-Maven"><a href="#下载-Maven" class="headerlink" title="下载 Maven"></a>下载 Maven</h2><blockquote>
-<p>Maven 官网: <a href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a></p>
-</blockquote>
-<h2 id="修改-Maven-为国内镜像"><a href="#修改-Maven-为国内镜像" class="headerlink" title="修改 Maven 为国内镜像"></a>修改 Maven 为国内镜像</h2><h3 id="针对所有项目修改中央仓库"><a href="#针对所有项目修改中央仓库" class="headerlink" title="针对所有项目修改中央仓库"></a>针对所有项目修改中央仓库</h3><p>右键项目选中 maven 选项，然后选择<code>open settings.xml</code>或者<code>create settings.xml</code>，在 <code>settings.xml</code> 下找到 <code>&lt;mirrors&gt;</code> 节点，并在节点下增加镜像配置，重启 IDE</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>id：唯一标识一个镜像</li>
-<li>name：镜像名称</li>
-<li>url：镜像地址</li>
-<li>mirrorOf：代表一个镜像的替代位置，例如 central 就表示代替官方的中央仓库</li>
-</ul>
-<h3 id="分别给每个项目配置不同的中央仓库"><a href="#分别给每个项目配置不同的中央仓库" class="headerlink" title="分别给每个项目配置不同的中央仓库"></a>分别给每个项目配置不同的中央仓库</h3><p>Maven 可以针对每个项目配置不同的中央仓库，在项目 <code>pom.xml</code> <code>&lt;repositories&gt;</code> 节点下增加如下配置</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="配置本地仓库位置"><a href="#配置本地仓库位置" class="headerlink" title="配置本地仓库位置"></a>配置本地仓库位置</h2><p>在<code>settings.xml</code>节点下新建一下节点<code>localRepository</code>
-idea 的 Maven 本地仓库是在用户文件夹下的<code>.m2</code>文件夹下，为了防止本地仓库太大，将仓库地址存放在项目同一磁盘下的<code>/workmaven/localRepository</code>文件夹内。</p>
-<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line">&lt;localRepository&gt;<span class="regexp">/workmaven/</span>localRepository&lt;/localRepository&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a href="https://maven.aliyun.com/mvn/guide">阿里云云效 Maven</a></li>
-</ol>
-<h1 id="配置Gradle"><a href="#配置Gradle" class="headerlink" title="配置Gradle"></a>配置Gradle</h1><h2 id="下载-Gradle"><a href="#下载-Gradle" class="headerlink" title="下载 Gradle"></a>下载 Gradle</h2><blockquote>
-<p>Gradle 官网: <a href="https://gradle.org/install">https://gradle.org/install</a></p>
-</blockquote>
-<h2 id="修改-Gradle-为国内镜像"><a href="#修改-Gradle-为国内镜像" class="headerlink" title="修改 Gradle 为国内镜像"></a>修改 Gradle 为国内镜像</h2><p>在<code>$&#123;USER_HOME&#125;/.gradle/</code>或者<code>$&#123;GRADLE_USER_HOME&#125;</code>下创建<code>init.gradle</code>文件，内容如下</p>
-<figure class="highlight isbl"><table><tr><td class="code"><pre><span class="line"><span class="variable">allprojects</span> &#123;</span><br><span class="line">  <span class="variable">repositories</span> &#123;</span><br><span class="line">    <span class="variable">maven</span> &#123;</span><br><span class="line">      <span class="variable">url</span> <span class="string">&#x27;https://maven.aliyun.com/repository/public/&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">mavenLocal</span>()</span></span><br><span class="line">    <span class="function"><span class="title">mavenCentral</span>()</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置本地仓库位置-1"><a href="#配置本地仓库位置-1" class="headerlink" title="配置本地仓库位置"></a>配置本地仓库位置</h2><p>Gradle 默认存放 jar 路径:<code>%USERPROFILE%\.gradle\caches\</code></p>
-<p>在环境变量中添加名为 <code>GRADLE_USER_HOME</code>，值为本地仓库位置的环境变量即可</p>
-<h3 id="配置-M2-HOME"><a href="#配置-M2-HOME" class="headerlink" title="配置 M2_HOME"></a>配置 M2_HOME</h3><p><code>mavenLocal()</code>
-时 Gradle 默认会按以下顺序去查找本地的 maven
-仓库：<code>$&#123;USER_HOME&#125;/.m2/settings.xml</code> &gt; <code>$&#123;M2_HOME&#125;/conf/settings.xml</code> &gt; <code>$&#123;USER_HOME&#125;/.m2/repository</code></p>
-]]></content>
-      <categories>
-        <category>开发环境</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>maven</tag>
-        <tag>gradle</tag>
       </tags>
   </entry>
   <entry>
@@ -2906,8 +2906,8 @@ Lock 对象。</p>
         <category>我的项目</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>vue.js</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
