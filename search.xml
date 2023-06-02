@@ -1723,65 +1723,6 @@ IDE 后并且可以无限期使用了(提示：在 jetbra.in 也有插件对应�
       </tags>
   </entry>
   <entry>
-    <title>Windows10配置Node开发环境</title>
-    <url>/2022/01/06/Windows10%E9%85%8D%E7%BD%AENode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
-
-
-<span id="more"></span>
-
-<h1 id="下载-Node-js"><a href="#下载-Node-js" class="headerlink" title="下载 Node.js"></a>下载 Node.js</h1><blockquote>
-<p>Node.js 官网: <a href="https://nodejs.org/zh-cn/download/">https://nodejs.org/zh-cn/download/</a></p>
-</blockquote>
-<h1 id="使用nvm管理Node版本"><a href="#使用nvm管理Node版本" class="headerlink" title="使用nvm管理Node版本"></a>使用nvm管理Node版本</h1><blockquote>
-<p>nvm: <a href="https://github.com/nvm-sh/nvm">https://github.com/nvm-sh/nvm</a></p>
-<p>nvm-windows: <a href="https://github.com/coreybutler/nvm-windows">https://github.com/coreybutler/nvm-windows</a></p>
-</blockquote>
-<p>设置国内Node和npm镜像：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm npm_mirror https://npmmirror.com/mirrors/npm/</span><br><span class="line">nvm node_mirror https://npmmirror.com/mirrors/node/</span><br></pre></td></tr></table></figure>
-
-<h1 id="修改-npm-全局模块安装路径"><a href="#修改-npm-全局模块安装路径" class="headerlink" title="修改 npm 全局模块安装路径"></a>修改 npm 全局模块安装路径</h1><p>全局模块默认安装路径: <code>%USERPROFILE%\AppData\Roaming\npm</code></p>
-<p>本例 Node.js 安装路位置: <code>D:\Applications\nodejs</code></p>
-<ol>
-<li><p>在 Nodejs 的根目录下创建全局模块路径<code>node_global</code>和全局缓存路径<code>node_cache</code></p>
-</li>
-<li><p>设置全局模块路径和全局缓存路径(注意:路径中不能包含空格否则 npx 使用不了)</p>
-</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局模块路径</span></span><br><span class="line">npm config <span class="built_in">set</span> prefix <span class="string">&quot;D:\Applications\nodejs\node_global&quot;</span></span><br><span class="line"><span class="comment"># 全局缓存路径</span></span><br><span class="line">npm config <span class="built_in">set</span> cache <span class="string">&quot;D:\Applications\nodejs\node_cache&quot;</span></span><br><span class="line"><span class="comment"># 查看配置</span></span><br><span class="line">npm config list</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>将以下路径添加至环境变量</li>
-</ol>
-<figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">D:\Applications<span class="symbol">\n</span>odejs</span><br><span class="line">D:\Applications<span class="symbol">\n</span>odejs<span class="symbol">\n</span>ode_global</span><br></pre></td></tr></table></figure>
-
-<h1 id="修改-npm-为国内镜像"><a href="#修改-npm-为国内镜像" class="headerlink" title="修改 npm 为国内镜像"></a>修改 npm 为国内镜像</h1><p>在命令行依次输入以下命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改为淘宝镜像</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line"><span class="comment"># 如果开发electron，则需要设置electron国内镜像</span></span><br><span class="line">npm config <span class="built_in">set</span> electron_mirror=https://npm.taobao.org/mirrors/electron/</span><br><span class="line"><span class="comment"># electron打包是也需要设置镜像，否则特别慢</span></span><br><span class="line">npm config <span class="built_in">set</span> electron-builder-binaries_mirror=https://npm.taobao.org/mirrors/electron-builder-binaries/</span><br><span class="line"><span class="comment"># 查看npm的仓库地址</span></span><br><span class="line">npm config get registry</span><br></pre></td></tr></table></figure>
-
-<h1 id="安装-yarn"><a href="#安装-yarn" class="headerlink" title="安装 yarn"></a>安装 yarn</h1><p>在全局模块 yarn 根目录下创建全局模块路径<code>yarn_global</code>和缓存路径<code>yarn_cache</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装</span></span><br><span class="line">npm install -g yarn</span><br><span class="line"><span class="comment"># 查看版本号</span></span><br><span class="line">yarn --version</span><br><span class="line"><span class="comment"># 设置yarn为国内镜像</span></span><br><span class="line">yarn config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line"><span class="comment"># 如果开发electron，则需要设置electron国内镜像</span></span><br><span class="line">yarn config <span class="built_in">set</span> electron_mirror=https://npm.taobao.org/mirrors/electron/</span><br><span class="line"><span class="comment"># electron打包是也需要设置镜像，否则特别慢</span></span><br><span class="line">yarn config <span class="built_in">set</span> electron-builder-binaries_mirror=https://npm.taobao.org/mirrors/electron-builder-binaries/</span><br><span class="line"><span class="comment"># 全局模块路径</span></span><br><span class="line">yarn config <span class="built_in">set</span> global-folder <span class="string">&quot;D:\Applications\nodejs\node_global\node_modules\yarn\yarn_global&quot;</span></span><br><span class="line"><span class="comment"># 设置缓存路径</span></span><br><span class="line">yarn config <span class="built_in">set</span> cache-folder <span class="string">&quot;D:\Applications\nodejs\node_global\node_modules\yarn\yarn_cache&quot;</span></span><br><span class="line"><span class="comment"># 查看配置</span></span><br><span class="line">yarn config list</span><br></pre></td></tr></table></figure>
-
-<h1 id="安装pnpm"><a href="#安装pnpm" class="headerlink" title="安装pnpm"></a>安装pnpm</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装</span></span><br><span class="line">npm install -g pnpm</span><br><span class="line"><span class="comment"># 设置存储库</span></span><br><span class="line">pnpm config <span class="built_in">set</span> store-dir D:\Applications\nodejs\node_global\node_modules\pnpm\store-dir</span><br><span class="line">pnpm config <span class="built_in">set</span> state-dir D:\Applications\nodejs\node_global\node_modules\pnpm\state-dir</span><br><span class="line">pnpm config <span class="built_in">set</span> cache-dir D:\Applications\nodejs\node_global\node_modules\pnpm\cache-dir</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a href="https://pnpm.io/zh/next/npmrc#store-dir">https://pnpm.io/zh/next/npmrc#store-dir</a></p>
-<p><a href="https://pnpm.io/zh/next/npmrc#state-dir">https://pnpm.io/zh/next/npmrc#state-dir</a></p>
-<p><a href="https://pnpm.io/zh/next/npmrc#cache-dir">https://pnpm.io/zh/next/npmrc#cache-dir</a></p>
-</blockquote>
-<h1 id="可能出现的报错"><a href="#可能出现的报错" class="headerlink" title="可能出现的报错"></a>可能出现的报错</h1><h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">yarn : 无法将“<span class="type">yarn</span>”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包括路径，请确保路径正确 ，然后再试一次。 所在位置 行:<span class="number">1</span> 字符: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">+ yarn <span class="comment">--version</span></span><br><span class="line">+ ~~~~</span><br><span class="line">    + CategoryInfo          : <span class="type">ObjectNotFound</span>: (yarn:String) [], CommandNotFoundException</span><br><span class="line">    + FullyQualifiedErrorId : <span class="type">CommandNotFoundException</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>管理员身份运行 PowerShell</p>
-<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置RemoteSigned</span></span><br><span class="line"><span class="built_in">set-ExecutionPolicy</span> <span class="string">RemoteSigned</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>开发环境</category>
-      </categories>
-      <tags>
-        <tag>npm</tag>
-        <tag>yarn</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows10配置OpenCV开发环境</title>
     <url>/2022/01/06/Windows10%E9%85%8D%E7%BD%AEOpenCV%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
@@ -1828,6 +1769,148 @@ IDE 后并且可以无限期使用了(提示：在 jetbra.in 也有插件对应�
       </categories>
       <tags>
         <tag>opencv</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows10配置Python3开发环境</title>
+    <url>/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPython3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+
+<span id="more"></span>
+
+<h1 id="下载Python3-7-9"><a href="#下载Python3-7-9" class="headerlink" title="下载Python3.7.9"></a>下载Python3.7.9</h1><p>常用的Python发行版有两个，一个是官网的Python（CPython），一个是Conda</p>
+<ol>
+<li>官网下载Python</li>
+</ol>
+<p>Python官网: <a href="https://www.python.org/ftp/python/">https://www.python.org/ftp/python/</a></p>
+<ol start="2">
+<li>下载Miniconda</li>
+</ol>
+<ul>
+<li>Conda官网：<a href="https://repo.anaconda.com/miniconda/">https://repo.anaconda.com/miniconda/</a></li>
+<li>国内镜像：<a href="https://repo.anaconda.com/miniconda/">https://repo.anaconda.com/miniconda/</a></li>
+<li>清华镜像：<a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/">https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/</a></li>
+</ul>
+<h1 id="配置conda"><a href="#配置conda" class="headerlink" title="配置conda"></a>配置conda</h1><h2 id="conda与anaconda、miniconda的区别"><a href="#conda与anaconda、miniconda的区别" class="headerlink" title="conda与anaconda、miniconda的区别"></a>conda与anaconda、miniconda的区别</h2><ul>
+<li>Conda：一个包管理器。Anaconda是一个发行包，conda可以理解为一个工具，也是一个可执行命令，其核心功能是包管理与环境管理。包管理与pip的使用类似，环境管理则允许用户方便地安装不同版本的python并可以快速切换。</li>
+<li>Anaconda：一个打包的集合器皿。里面预装好了conda、某个版本的python、众多packages、科学计算工具等等，所以也称为Python的一种发行版。</li>
+<li>Miniconda：顾名思义，它只包含最基本的内容——python与conda，以及相关的必须依赖项，对于空间要求严格的用户，Miniconda是一种选择。</li>
+</ul>
+<h2 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h2><p>本文Miniconda安装位置为<code>D:\Applications\Miniconda3</code></p>
+<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">D:</span>\Applications\Miniconda3</span><br><span class="line"><span class="symbol">D:</span>\Applications\Miniconda3\Scripts</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置国内镜像"><a href="#设置国内镜像" class="headerlink" title="设置国内镜像"></a>设置国内镜像</h2><blockquote>
+<p>清华镜像：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/</a></p>
+</blockquote>
+<p>通过以下命令在用户目录下创建<code>.condarc</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --<span class="built_in">set</span> show_channel_urls <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+
+<p>编辑<code>.condarc</code>，文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: <span class="literal">true</span></span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch-lts: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改默认包安装位置"><a href="#修改默认包安装位置" class="headerlink" title="修改默认包安装位置"></a>修改默认包安装位置</h2><p>编辑<code>.condarc</code>，追加文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">envs_dirs:</span><br><span class="line">  - D:\Applications\Miniconda3\envs</span><br><span class="line">pkgs_dirs:</span><br><span class="line">  - D:\Applications\Miniconda3\pkgs</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置pip-cache目录"><a href="#设置pip-cache目录" class="headerlink" title="设置pip cache目录"></a>设置pip cache目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.cache-dir <span class="string">&quot;D:\Applications\Miniconda3\pip-cache&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><blockquote>
+<p>官方API：<a href="https://conda.io/projects/conda/en/latest/index.html">https://conda.io/projects/conda/en/latest/index.html</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 激活虚拟环境</span></span><br><span class="line">conda activate env_name</span><br><span class="line"><span class="comment"># 退出虚拟环境</span></span><br><span class="line">conda deactivate</span><br><span class="line"><span class="comment"># 创建虚拟环境</span></span><br><span class="line">conda create -n python37 python=3.7</span><br><span class="line"><span class="comment"># 列出虚拟环境</span></span><br><span class="line">conda <span class="built_in">env</span> list</span><br><span class="line"><span class="comment"># 卸载虚拟环境</span></span><br><span class="line">conda remove -n python37 --all</span><br><span class="line"><span class="comment"># 安装包</span></span><br><span class="line">conda install requests or pip install requests</span><br><span class="line"><span class="comment"># 卸载包</span></span><br><span class="line">conda remove requests or pip uninstall requests</span><br><span class="line"><span class="comment"># 查看环境包信息</span></span><br><span class="line">conda list</span><br></pre></td></tr></table></figure>
+
+<h1 id="配置pip"><a href="#配置pip" class="headerlink" title="配置pip"></a>配置pip</h1><h2 id="设置国内镜像-1"><a href="#设置国内镜像-1" class="headerlink" title="设置国内镜像"></a>设置国内镜像</h2><ul>
+<li>临时使用</li>
+</ul>
+<p>可以在使用 pip 的时候在后面加上<code>-i</code>参数，指定 pip 源</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">pip install xxx -i http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/pypi/</span>simple/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>永久修改</li>
+</ul>
+<ol>
+<li>Linux</li>
+</ol>
+<p>修改 <code>~/.pip/pip.conf</code> (没有就创建一个)，内容如下:</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">[<span class="keyword">global</span>]</span><br><span class="line"><span class="keyword">index</span>-url = http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line"><span class="keyword">trusted</span>-host = mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Windows</li>
+</ol>
+<p>在 user 目录中创建一个 pip 目录，如：<code>%USERPROFILE%\pip</code>，新建文件 pip.ini，内容如下:</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">[<span class="keyword">global</span>]</span><br><span class="line"><span class="keyword">index</span>-url = http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line"><span class="keyword">trusted</span>-host = mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改默认包安装位置-1"><a href="#修改默认包安装位置-1" class="headerlink" title="修改默认包安装位置"></a>修改默认包安装位置</h2><p>以官网下载Python（CPython）为例，Python安装位置为<code>D:\Applications\Python</code>。</p>
+<ol>
+<li>安装目录解释</li>
+</ol>
+<p><img src="https://files.mdnice.com/user/10819/7b25f00c-3f11-4ba3-afea-3fd9410fa4aa.png"></p>
+<p>Python 目录/文件的具体用途：</p>
+<ul>
+<li><strong>DLLs</strong> Python 自己使用的动态库</li>
+<li><strong>Doc</strong> 自带的 Python 使用说明文档（如果上面安装时不选择，应该会没有，这个没具体试过）</li>
+<li><strong>include</strong> 包含共享目录</li>
+<li><strong>Lib</strong> 库文件，放自定义模块和包</li>
+<li><strong>libs</strong> 编译生成的 Python 自己使用的静态库</li>
+<li><strong>Scripts</strong> 各种包/模块对应的可执行程序。安装时如果选择了 pip。那么 pip 的可执行程序就在此！</li>
+<li><strong>tcl</strong> 桌面编程包</li>
+</ul>
+<p>pip 包默认安装位置是<code>%USERPROFILE%\AppData\Roaming\Python\Python37\Lib\site-packages</code></p>
+<ol start="2">
+<li>修改配置文件</li>
+</ol>
+<p>命令行输入：<code>python -m site -help</code></p>
+<p><img src="https://files.mdnice.com/user/10819/4d59f43f-712f-4575-85b1-574778034f09.png"></p>
+<p>修改配置文件，配置文件位置为：<code>D:\Applications\Python\Python37\Lib\site.py</code></p>
+<p><img src="https://files.mdnice.com/user/10819/c57196ee-bbcd-455e-81eb-fc5fa6c6cca0.png">
+内容如下</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">USER_SITE</span> = <span class="string">&#x27;D:\Applications\Python\Python37\Lib\site-packages&#x27;</span></span><br><span class="line"><span class="attr">USER_BASE</span> = <span class="string">&#x27;D:\Applications\Python\Python37\Scripts&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="设置pip-cache目录-1"><a href="#设置pip-cache目录-1" class="headerlink" title="设置pip cache目录"></a>设置pip cache目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.cache-dir <span class="string">&quot;D:\Applications\Python\Python37\pip-cache&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="升级-pip"><a href="#升级-pip" class="headerlink" title="升级 pip"></a>升级 pip</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+
+<h1 id="配置PyQt5开发环境"><a href="#配置PyQt5开发环境" class="headerlink" title="配置PyQt5开发环境"></a>配置PyQt5开发环境</h1><h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>使用Conda创建一个项目，Python版本为3.7</p>
+<p><img src="https://img-blog.csdnimg.cn/4304a0afc3f84ffba6d49a756bbf484c.png"></p>
+<h2 id="安装pyqt5、pyqt5-tools"><a href="#安装pyqt5、pyqt5-tools" class="headerlink" title="安装pyqt5、pyqt5-tools"></a>安装pyqt5、pyqt5-tools</h2><p>Conda中没有pyqt5相关的包，所以我们使用pip安装pyqt5和pyqt5-tools</p>
+<ol>
+<li>安装pyqt5</li>
+</ol>
+<blockquote>
+<p><a href="https://pypi.org/project/PyQt5/">https://pypi.org/project/PyQt5/</a></p>
+</blockquote>
+<p>这是开发PyQt5最主要的包。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install PyQt5</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>pyqt5-tools</li>
+</ol>
+<blockquote>
+<p><a href="https://pypi.org/project/pyqt5-tools/">https://pypi.org/project/pyqt5-tools/</a></p>
+</blockquote>
+<p>这个可以帮我我们快速开发，例如可以借助包里面的工具（designer），快速设计界面。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install pyqt5-tools</span><br></pre></td></tr></table></figure>
+
+<p><strong>如何配置designer？</strong></p>
+<p>如下图所示配置designer.exe文件位置，例如<code>D:\Applications\Miniconda3\envs\pyqt5-demo\Lib\site-packages\qt5_applications\Qt\bin\designer.exe</code></p>
+<p><img src="https://img-blog.csdnimg.cn/0e8ae49d617140c7aed27b00ca5f664c.png"></p>
+<p><strong>如何使用？</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/6e69a900ff4f4ee6a4246315e4513757.png"></p>
+<p>主界面如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/e1c89da35a6d4b3c9c7b9e9ee444b2f7.png"></p>
+<h2 id="第一行代码"><a href="#第一行代码" class="headerlink" title="第一行代码"></a>第一行代码</h2><p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QApplication, QWidget, QLabel</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">window</span>():</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    widget = QWidget()</span><br><span class="line"></span><br><span class="line">    text_label = QLabel(widget)</span><br><span class="line">    text_label.setText(<span class="string">&quot;Hello World!&quot;</span>)</span><br><span class="line">    text_label.move(<span class="number">110</span>, <span class="number">85</span>)</span><br><span class="line"></span><br><span class="line">    widget.setGeometry(<span class="number">50</span>, <span class="number">50</span>, <span class="number">320</span>, <span class="number">200</span>)</span><br><span class="line">    widget.setWindowTitle(<span class="string">&quot;PyQt5 Example&quot;</span>)</span><br><span class="line">    widget.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    window()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行效果如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/b680e9543d0a40c9ae4054642724046e.png"></p>
+]]></content>
+      <categories>
+        <category>开发环境</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>pip</tag>
+        <tag>conda</tag>
       </tags>
   </entry>
   <entry>
@@ -1923,145 +2006,62 @@ IDE 后并且可以无限期使用了(提示：在 jetbra.in 也有插件对应�
       </tags>
   </entry>
   <entry>
-    <title>Windows10配置Python3开发环境</title>
-    <url>/2022/01/06/Windows10%E9%85%8D%E7%BD%AEPython3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
+    <title>Windows10配置Node开发环境</title>
+    <url>/2022/01/06/Windows10%E9%85%8D%E7%BD%AENode%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
 
 
 <span id="more"></span>
 
-<h1 id="下载Python3-7-9"><a href="#下载Python3-7-9" class="headerlink" title="下载Python3.7.9"></a>下载Python3.7.9</h1><p>常用的Python发行版有两个，一个是官网的Python（CPython），一个是Conda</p>
-<ol>
-<li>官网下载Python</li>
-</ol>
-<p>Python官网: <a href="https://www.python.org/ftp/python/">https://www.python.org/ftp/python/</a></p>
-<ol start="2">
-<li>下载Miniconda</li>
-</ol>
-<ul>
-<li>Conda官网：<a href="https://repo.anaconda.com/miniconda/">https://repo.anaconda.com/miniconda/</a></li>
-<li>国内镜像：<a href="https://repo.anaconda.com/miniconda/">https://repo.anaconda.com/miniconda/</a></li>
-<li>清华镜像：<a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/">https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/</a></li>
-</ul>
-<h1 id="配置conda"><a href="#配置conda" class="headerlink" title="配置conda"></a>配置conda</h1><h2 id="conda与anaconda、miniconda的区别"><a href="#conda与anaconda、miniconda的区别" class="headerlink" title="conda与anaconda、miniconda的区别"></a>conda与anaconda、miniconda的区别</h2><ul>
-<li>Conda：一个包管理器。Anaconda是一个发行包，conda可以理解为一个工具，也是一个可执行命令，其核心功能是包管理与环境管理。包管理与pip的使用类似，环境管理则允许用户方便地安装不同版本的python并可以快速切换。</li>
-<li>Anaconda：一个打包的集合器皿。里面预装好了conda、某个版本的python、众多packages、科学计算工具等等，所以也称为Python的一种发行版。</li>
-<li>Miniconda：顾名思义，它只包含最基本的内容——python与conda，以及相关的必须依赖项，对于空间要求严格的用户，Miniconda是一种选择。</li>
-</ul>
-<h2 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h2><p>本文Miniconda安装位置为<code>D:\Applications\Miniconda3</code></p>
-<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">D:</span>\Applications\Miniconda3</span><br><span class="line"><span class="symbol">D:</span>\Applications\Miniconda3\Scripts</span><br></pre></td></tr></table></figure>
-
-<h2 id="设置国内镜像"><a href="#设置国内镜像" class="headerlink" title="设置国内镜像"></a>设置国内镜像</h2><blockquote>
-<p>清华镜像：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/</a></p>
+<h1 id="下载-Node-js"><a href="#下载-Node-js" class="headerlink" title="下载 Node.js"></a>下载 Node.js</h1><blockquote>
+<p>Node.js 官网: <a href="https://nodejs.org/zh-cn/download/">https://nodejs.org/zh-cn/download/</a></p>
 </blockquote>
-<p>通过以下命令在用户目录下创建<code>.condarc</code>文件：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --<span class="built_in">set</span> show_channel_urls <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
-
-<p>编辑<code>.condarc</code>，文件内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: <span class="literal">true</span></span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch-lts: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改默认包安装位置"><a href="#修改默认包安装位置" class="headerlink" title="修改默认包安装位置"></a>修改默认包安装位置</h2><p>编辑<code>.condarc</code>，追加文件内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">envs_dirs:</span><br><span class="line">  - D:\Applications\Miniconda3\envs</span><br><span class="line">pkgs_dirs:</span><br><span class="line">  - D:\Applications\Miniconda3\pkgs</span><br></pre></td></tr></table></figure>
-
-<h2 id="设置pip-cache目录"><a href="#设置pip-cache目录" class="headerlink" title="设置pip cache目录"></a>设置pip cache目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.cache-dir <span class="string">&quot;D:\Applications\Miniconda3\pip-cache&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><blockquote>
-<p>官方API：<a href="https://conda.io/projects/conda/en/latest/index.html">https://conda.io/projects/conda/en/latest/index.html</a></p>
+<h1 id="使用nvm管理Node版本"><a href="#使用nvm管理Node版本" class="headerlink" title="使用nvm管理Node版本"></a>使用nvm管理Node版本</h1><blockquote>
+<p>nvm: <a href="https://github.com/nvm-sh/nvm">https://github.com/nvm-sh/nvm</a></p>
+<p>nvm-windows: <a href="https://github.com/coreybutler/nvm-windows">https://github.com/coreybutler/nvm-windows</a></p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 激活虚拟环境</span></span><br><span class="line">activate env_name</span><br><span class="line"><span class="comment"># 退出虚拟环境</span></span><br><span class="line">conda deactivate</span><br><span class="line"><span class="comment"># 创建虚拟环境</span></span><br><span class="line">conda create -n python37 python=3.7</span><br><span class="line"><span class="comment"># 列出虚拟环境</span></span><br><span class="line">conda <span class="built_in">env</span> list</span><br><span class="line"><span class="comment"># 卸载虚拟环境</span></span><br><span class="line">conda remove -n python37 --all</span><br><span class="line"><span class="comment"># 安装包</span></span><br><span class="line">conda install requests or pip install requests</span><br><span class="line"><span class="comment"># 卸载包</span></span><br><span class="line">conda remove requests or pip uninstall requests</span><br><span class="line"><span class="comment"># 查看环境包信息</span></span><br><span class="line">conda list</span><br></pre></td></tr></table></figure>
+<p>设置国内Node和npm镜像：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm npm_mirror https://npmmirror.com/mirrors/npm/</span><br><span class="line">nvm node_mirror https://npmmirror.com/mirrors/node/</span><br></pre></td></tr></table></figure>
 
-<h1 id="配置pip"><a href="#配置pip" class="headerlink" title="配置pip"></a>配置pip</h1><h2 id="设置国内镜像-1"><a href="#设置国内镜像-1" class="headerlink" title="设置国内镜像"></a>设置国内镜像</h2><ul>
-<li>临时使用</li>
-</ul>
-<p>可以在使用 pip 的时候在后面加上<code>-i</code>参数，指定 pip 源</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">pip install xxx -i http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/pypi/</span>simple/</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>永久修改</li>
-</ul>
+<h1 id="修改-npm-全局模块安装路径"><a href="#修改-npm-全局模块安装路径" class="headerlink" title="修改 npm 全局模块安装路径"></a>修改 npm 全局模块安装路径</h1><p>全局模块默认安装路径: <code>%USERPROFILE%\AppData\Roaming\npm</code></p>
+<p>本例 Node.js 安装路位置: <code>D:\Applications\nodejs</code></p>
 <ol>
-<li>Linux</li>
+<li><p>在 Nodejs 的根目录下创建全局模块路径<code>node_global</code>和全局缓存路径<code>node_cache</code></p>
+</li>
+<li><p>设置全局模块路径和全局缓存路径(注意:路径中不能包含空格否则 npx 使用不了)</p>
+</li>
 </ol>
-<p>修改 <code>~/.pip/pip.conf</code> (没有就创建一个)，内容如下:</p>
-<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">[<span class="keyword">global</span>]</span><br><span class="line"><span class="keyword">index</span>-url = http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line"><span class="keyword">trusted</span>-host = mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局模块路径</span></span><br><span class="line">npm config <span class="built_in">set</span> prefix <span class="string">&quot;D:\Applications\nodejs\node_global&quot;</span></span><br><span class="line"><span class="comment"># 全局缓存路径</span></span><br><span class="line">npm config <span class="built_in">set</span> cache <span class="string">&quot;D:\Applications\nodejs\node_cache&quot;</span></span><br><span class="line"><span class="comment"># 查看配置</span></span><br><span class="line">npm config list</span><br></pre></td></tr></table></figure>
 
-<ol start="2">
-<li>Windows</li>
+<ol start="3">
+<li>将以下路径添加至环境变量</li>
 </ol>
-<p>在 user 目录中创建一个 pip 目录，如：<code>%USERPROFILE%\pip</code>，新建文件 pip.ini，内容如下:</p>
-<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">[<span class="keyword">global</span>]</span><br><span class="line"><span class="keyword">index</span>-url = http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line"><span class="keyword">trusted</span>-host = mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">D:\Applications<span class="symbol">\n</span>odejs</span><br><span class="line">D:\Applications<span class="symbol">\n</span>odejs<span class="symbol">\n</span>ode_global</span><br></pre></td></tr></table></figure>
 
-<h2 id="修改默认包安装位置-1"><a href="#修改默认包安装位置-1" class="headerlink" title="修改默认包安装位置"></a>修改默认包安装位置</h2><p>以官网下载Python（CPython）为例，Python安装位置为<code>D:\Applications\Python</code>。</p>
-<ol>
-<li>安装目录解释</li>
-</ol>
-<p><img src="https://files.mdnice.com/user/10819/7b25f00c-3f11-4ba3-afea-3fd9410fa4aa.png"></p>
-<p>Python 目录/文件的具体用途：</p>
-<ul>
-<li><strong>DLLs</strong> Python 自己使用的动态库</li>
-<li><strong>Doc</strong> 自带的 Python 使用说明文档（如果上面安装时不选择，应该会没有，这个没具体试过）</li>
-<li><strong>include</strong> 包含共享目录</li>
-<li><strong>Lib</strong> 库文件，放自定义模块和包</li>
-<li><strong>libs</strong> 编译生成的 Python 自己使用的静态库</li>
-<li><strong>Scripts</strong> 各种包/模块对应的可执行程序。安装时如果选择了 pip。那么 pip 的可执行程序就在此！</li>
-<li><strong>tcl</strong> 桌面编程包</li>
-</ul>
-<p>pip 包默认安装位置是<code>%USERPROFILE%\AppData\Roaming\Python\Python37\Lib\site-packages</code></p>
-<ol start="2">
-<li>修改配置文件</li>
-</ol>
-<p>命令行输入：<code>python -m site -help</code></p>
-<p><img src="https://files.mdnice.com/user/10819/4d59f43f-712f-4575-85b1-574778034f09.png"></p>
-<p>修改配置文件，配置文件位置为：<code>D:\Applications\Python\Python37\Lib\site.py</code></p>
-<p><img src="https://files.mdnice.com/user/10819/c57196ee-bbcd-455e-81eb-fc5fa6c6cca0.png">
-内容如下</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">USER_SITE</span> = <span class="string">&#x27;D:\Applications\Python\Python37\Lib\site-packages&#x27;</span></span><br><span class="line"><span class="attr">USER_BASE</span> = <span class="string">&#x27;D:\Applications\Python\Python37\Scripts&#x27;</span></span><br></pre></td></tr></table></figure>
+<h1 id="修改-npm-为国内镜像"><a href="#修改-npm-为国内镜像" class="headerlink" title="修改 npm 为国内镜像"></a>修改 npm 为国内镜像</h1><p>在命令行依次输入以下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改为淘宝镜像</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line"><span class="comment"># 如果开发electron，则需要设置electron国内镜像</span></span><br><span class="line">npm config <span class="built_in">set</span> electron_mirror=https://npm.taobao.org/mirrors/electron/</span><br><span class="line"><span class="comment"># electron打包是也需要设置镜像，否则特别慢</span></span><br><span class="line">npm config <span class="built_in">set</span> electron-builder-binaries_mirror=https://npm.taobao.org/mirrors/electron-builder-binaries/</span><br><span class="line"><span class="comment"># 查看npm的仓库地址</span></span><br><span class="line">npm config get registry</span><br></pre></td></tr></table></figure>
 
-<h2 id="设置pip-cache目录-1"><a href="#设置pip-cache目录-1" class="headerlink" title="设置pip cache目录"></a>设置pip cache目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.cache-dir <span class="string">&quot;D:\Applications\Python\Python37\pip-cache&quot;</span></span><br></pre></td></tr></table></figure>
+<h1 id="安装-yarn"><a href="#安装-yarn" class="headerlink" title="安装 yarn"></a>安装 yarn</h1><p>在全局模块 yarn 根目录下创建全局模块路径<code>yarn_global</code>和缓存路径<code>yarn_cache</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装</span></span><br><span class="line">npm install -g yarn</span><br><span class="line"><span class="comment"># 查看版本号</span></span><br><span class="line">yarn --version</span><br><span class="line"><span class="comment"># 设置yarn为国内镜像</span></span><br><span class="line">yarn config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line"><span class="comment"># 如果开发electron，则需要设置electron国内镜像</span></span><br><span class="line">yarn config <span class="built_in">set</span> electron_mirror=https://npm.taobao.org/mirrors/electron/</span><br><span class="line"><span class="comment"># electron打包是也需要设置镜像，否则特别慢</span></span><br><span class="line">yarn config <span class="built_in">set</span> electron-builder-binaries_mirror=https://npm.taobao.org/mirrors/electron-builder-binaries/</span><br><span class="line"><span class="comment"># 全局模块路径</span></span><br><span class="line">yarn config <span class="built_in">set</span> global-folder <span class="string">&quot;D:\Applications\nodejs\node_global\node_modules\yarn\yarn_global&quot;</span></span><br><span class="line"><span class="comment"># 设置缓存路径</span></span><br><span class="line">yarn config <span class="built_in">set</span> cache-folder <span class="string">&quot;D:\Applications\nodejs\node_global\node_modules\yarn\yarn_cache&quot;</span></span><br><span class="line"><span class="comment"># 查看配置</span></span><br><span class="line">yarn config list</span><br></pre></td></tr></table></figure>
 
-<h2 id="升级-pip"><a href="#升级-pip" class="headerlink" title="升级 pip"></a>升级 pip</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<h1 id="安装pnpm"><a href="#安装pnpm" class="headerlink" title="安装pnpm"></a>安装pnpm</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装</span></span><br><span class="line">npm install -g pnpm</span><br><span class="line"><span class="comment"># 设置存储库</span></span><br><span class="line">pnpm config <span class="built_in">set</span> store-dir D:\Applications\nodejs\node_global\node_modules\pnpm\store-dir</span><br><span class="line">pnpm config <span class="built_in">set</span> state-dir D:\Applications\nodejs\node_global\node_modules\pnpm\state-dir</span><br><span class="line">pnpm config <span class="built_in">set</span> cache-dir D:\Applications\nodejs\node_global\node_modules\pnpm\cache-dir</span><br></pre></td></tr></table></figure>
 
-<h1 id="配置PyQt5开发环境"><a href="#配置PyQt5开发环境" class="headerlink" title="配置PyQt5开发环境"></a>配置PyQt5开发环境</h1><h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>使用Conda创建一个项目，Python版本为3.7</p>
-<p><img src="https://img-blog.csdnimg.cn/4304a0afc3f84ffba6d49a756bbf484c.png"></p>
-<h2 id="安装pyqt5、pyqt5-tools"><a href="#安装pyqt5、pyqt5-tools" class="headerlink" title="安装pyqt5、pyqt5-tools"></a>安装pyqt5、pyqt5-tools</h2><p>Conda中没有pyqt5相关的包，所以我们使用pip安装pyqt5和pyqt5-tools</p>
-<ol>
-<li>安装pyqt5</li>
-</ol>
 <blockquote>
-<p><a href="https://pypi.org/project/PyQt5/">https://pypi.org/project/PyQt5/</a></p>
+<p><a href="https://pnpm.io/zh/next/npmrc#store-dir">https://pnpm.io/zh/next/npmrc#store-dir</a></p>
+<p><a href="https://pnpm.io/zh/next/npmrc#state-dir">https://pnpm.io/zh/next/npmrc#state-dir</a></p>
+<p><a href="https://pnpm.io/zh/next/npmrc#cache-dir">https://pnpm.io/zh/next/npmrc#cache-dir</a></p>
 </blockquote>
-<p>这是开发PyQt5最主要的包。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install PyQt5</span><br></pre></td></tr></table></figure>
+<h1 id="可能出现的报错"><a href="#可能出现的报错" class="headerlink" title="可能出现的报错"></a>可能出现的报错</h1><h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">yarn : 无法将“<span class="type">yarn</span>”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包括路径，请确保路径正确 ，然后再试一次。 所在位置 行:<span class="number">1</span> 字符: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">+ yarn <span class="comment">--version</span></span><br><span class="line">+ ~~~~</span><br><span class="line">    + CategoryInfo          : <span class="type">ObjectNotFound</span>: (yarn:String) [], CommandNotFoundException</span><br><span class="line">    + FullyQualifiedErrorId : <span class="type">CommandNotFoundException</span></span><br></pre></td></tr></table></figure>
 
-<ol start="2">
-<li>pyqt5-tools</li>
-</ol>
-<blockquote>
-<p><a href="https://pypi.org/project/pyqt5-tools/">https://pypi.org/project/pyqt5-tools/</a></p>
-</blockquote>
-<p>这个可以帮我我们快速开发，例如可以借助包里面的工具（designer），快速设计界面。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install pyqt5-tools</span><br></pre></td></tr></table></figure>
-
-<p><strong>如何配置designer？</strong></p>
-<p>如下图所示配置designer.exe文件位置，例如<code>D:\Applications\Miniconda3\envs\pyqt5-demo\Lib\site-packages\qt5_applications\Qt\bin\designer.exe</code></p>
-<p><img src="https://img-blog.csdnimg.cn/0e8ae49d617140c7aed27b00ca5f664c.png"></p>
-<p><strong>如何使用？</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/6e69a900ff4f4ee6a4246315e4513757.png"></p>
-<p>主界面如下：</p>
-<p><img src="https://img-blog.csdnimg.cn/e1c89da35a6d4b3c9c7b9e9ee444b2f7.png"></p>
-<h2 id="第一行代码"><a href="#第一行代码" class="headerlink" title="第一行代码"></a>第一行代码</h2><p>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> QApplication, QWidget, QLabel</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">window</span>():</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    widget = QWidget()</span><br><span class="line"></span><br><span class="line">    text_label = QLabel(widget)</span><br><span class="line">    text_label.setText(<span class="string">&quot;Hello World!&quot;</span>)</span><br><span class="line">    text_label.move(<span class="number">110</span>, <span class="number">85</span>)</span><br><span class="line"></span><br><span class="line">    widget.setGeometry(<span class="number">50</span>, <span class="number">50</span>, <span class="number">320</span>, <span class="number">200</span>)</span><br><span class="line">    widget.setWindowTitle(<span class="string">&quot;PyQt5 Example&quot;</span>)</span><br><span class="line">    widget.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    window()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>运行效果如下：</p>
-<p><img src="https://img-blog.csdnimg.cn/b680e9543d0a40c9ae4054642724046e.png"></p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>管理员身份运行 PowerShell</p>
+<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置RemoteSigned</span></span><br><span class="line"><span class="built_in">set-ExecutionPolicy</span> <span class="string">RemoteSigned</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>开发环境</category>
       </categories>
       <tags>
-        <tag>python</tag>
-        <tag>pip</tag>
-        <tag>conda</tag>
+        <tag>npm</tag>
+        <tag>yarn</tag>
       </tags>
   </entry>
   <entry>
